@@ -1,0 +1,2270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="theme-color" content="#4F46E5">
+<meta name="description" content="Eastview Teens – Rights & Responsibilities under Zimbabwe's Constitution 2013">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>Eastview Rights Hub – Zimbabwe</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Sora:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+<style>
+/* ============================================================
+   TOKENS
+============================================================ */
+:root{
+  --primary:#4F46E5;--primary-dark:#3730A3;--primary-light:#818CF8;
+  --secondary:#06B6D4;--accent:#F59E0B;--danger:#EF4444;--success:#10B981;
+  --zim-green:#1B5E20;--zim-gold:#FFC107;--zim-red:#B71C1C;
+  --bg:#F9FAFB;--card:#FFFFFF;--surface:#F3F4F6;--border:#E5E7EB;
+  --text:#111827;--text2:#6B7280;--text3:#9CA3AF;
+  --dark-bg:#0F0F1A;--dark-card:#1A1A2E;--dark-surface:#252540;
+  --dark-border:#2D2D4E;--dark-text:#F1F1FF;--dark-text2:#A0A0C0;
+  --radius:16px;--radius-sm:10px;--radius-xs:6px;
+  --shadow:0 4px 24px rgba(79,70,229,.10);--shadow-md:0 8px 32px rgba(79,70,229,.16);
+  --trans:.22s cubic-bezier(.4,0,.2,1);
+  --ff:'Outfit',sans-serif;--ff2:'Sora',sans-serif;
+  --nav:64px;--bottom:68px;
+}
+[data-theme="dark"]{
+  --bg:var(--dark-bg);--card:var(--dark-card);--surface:var(--dark-surface);
+  --border:var(--dark-border);--text:var(--dark-text);--text2:var(--dark-text2);
+  --text3:#6B6B90;--shadow:0 4px 24px rgba(0,0,0,.4);
+}
+
+/* ============================================================
+   RESET
+============================================================ */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{font-size:16px;scroll-behavior:smooth;-webkit-text-size-adjust:100%;}
+body{font-family:var(--ff);background:var(--bg);color:var(--text);
+  min-height:100vh;overflow-x:hidden;transition:background .3s,color .3s;
+  -webkit-font-smoothing:antialiased;}
+::-webkit-scrollbar{width:4px;}
+::-webkit-scrollbar-thumb{background:var(--primary-light);border-radius:4px;}
+button{font-family:var(--ff);cursor:pointer;}
+input,select,textarea{font-family:var(--ff);}
+a{text-decoration:none;color:inherit;}
+
+/* ============================================================
+   SPLASH SCREEN
+============================================================ */
+#splash{
+  position:fixed;inset:0;z-index:9999;
+  background:linear-gradient(135deg,var(--primary-dark) 0%,var(--primary) 50%,var(--secondary) 100%);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  color:white;
+}
+.splash-logo-wrap{
+  width:100px;height:100px;border-radius:28px;
+  background:rgba(255,255,255,.15);backdrop-filter:blur(10px);
+  display:flex;align-items:center;justify-content:center;
+  font-size:3rem;margin-bottom:20px;
+  animation:splashPop .7s cubic-bezier(.34,1.56,.64,1);
+  border:2px solid rgba(255,255,255,.25);
+}
+@keyframes splashPop{from{transform:scale(0) rotate(-20deg);opacity:0;}to{transform:scale(1) rotate(0);opacity:1;}}
+.splash-title{font-family:var(--ff2);font-size:2rem;font-weight:800;text-align:center;letter-spacing:1px;}
+.splash-sub{font-size:.85rem;opacity:.8;margin-top:6px;text-align:center;}
+.splash-bar-wrap{width:200px;height:4px;background:rgba(255,255,255,.2);border-radius:4px;margin-top:32px;overflow:hidden;}
+.splash-bar{height:100%;background:white;border-radius:4px;width:0;animation:barFill 2.2s ease forwards;}
+@keyframes barFill{to{width:100%;}}
+.splash-version{position:absolute;bottom:20px;font-size:.72rem;opacity:.5;}
+.zim-flag-mini{display:flex;flex-direction:column;width:36px;height:24px;border-radius:4px;overflow:hidden;margin-right:10px;border:1px solid rgba(255,255,255,.3);}
+.zfm-s{flex:1;}
+.zfm-g{background:#006400;}.zfm-y{background:#FFD200;}.zfm-r{background:#D21034;}.zfm-b{background:#000;}
+
+/* ============================================================
+   APP SHELL
+============================================================ */
+#app{display:none;flex-direction:column;height:100vh;overflow:hidden;}
+#app.show{display:flex;}
+
+/* ============================================================
+   TOP NAV
+============================================================ */
+.top-nav{
+  height:var(--nav);background:var(--card);
+  border-bottom:1px solid var(--border);
+  display:flex;align-items:center;padding:0 16px;gap:10px;
+  position:sticky;top:0;z-index:200;
+  box-shadow:0 2px 12px rgba(79,70,229,.07);
+  flex-shrink:0;transition:background .3s,border-color .3s;
+}
+.nav-logo{
+  width:36px;height:36px;border-radius:10px;
+  background:linear-gradient(135deg,var(--primary),var(--secondary));
+  display:flex;align-items:center;justify-content:center;
+  color:white;font-size:1rem;flex-shrink:0;
+}
+.nav-title-wrap{flex:1;}
+.nav-title{font-family:var(--ff2);font-weight:800;font-size:.95rem;color:var(--text);line-height:1.1;}
+.nav-sub{font-size:.68rem;color:var(--text2);}
+.nav-actions{display:flex;gap:6px;}
+.nav-btn{
+  width:36px;height:36px;border-radius:var(--radius-xs);
+  background:var(--surface);border:1px solid var(--border);
+  color:var(--text2);display:flex;align-items:center;
+  justify-content:center;font-size:.85rem;
+  transition:var(--trans);position:relative;
+}
+.nav-btn:hover{color:var(--primary);border-color:var(--primary);}
+.notif-dot::after{
+  content:'';position:absolute;top:6px;right:6px;
+  width:7px;height:7px;background:var(--danger);
+  border-radius:50%;border:1.5px solid var(--card);
+}
+
+/* ============================================================
+   SEARCH BAR
+============================================================ */
+.search-bar-wrap{padding:10px 16px;background:var(--card);border-bottom:1px solid var(--border);}
+.search-input{
+  width:100%;background:var(--surface);border:1.5px solid var(--border);
+  border-radius:var(--radius-sm);padding:10px 14px 10px 38px;
+  font-size:.88rem;color:var(--text);outline:none;transition:var(--trans);
+}
+.search-input::placeholder{color:var(--text3);}
+.search-input:focus{border-color:var(--primary);box-shadow:0 0 0 3px rgba(79,70,229,.1);}
+.search-wrap-rel{position:relative;}
+.search-icon{position:absolute;left:12px;top:50%;transform:translateY(-50%);color:var(--text3);font-size:.85rem;}
+
+/* ============================================================
+   MAIN CONTENT
+============================================================ */
+.main-scroll{flex:1;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;padding-bottom:var(--bottom);}
+.screen{display:none;animation:fadeUp .3s ease;}
+.screen.active{display:block;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px);}to{opacity:1;transform:translateY(0);}}
+
+/* ============================================================
+   BOTTOM NAV
+============================================================ */
+.bottom-nav{
+  height:var(--bottom);background:var(--card);
+  border-top:1px solid var(--border);
+  display:grid;grid-template-columns:repeat(5,1fr);
+  position:fixed;bottom:0;left:0;right:0;z-index:200;
+  box-shadow:0 -4px 20px rgba(0,0,0,.07);
+  transition:background .3s;
+}
+.bn{
+  display:flex;flex-direction:column;align-items:center;
+  justify-content:center;gap:3px;background:none;border:none;
+  color:var(--text3);transition:var(--trans);padding:8px 4px;
+  font-size:.58rem;font-weight:700;letter-spacing:.3px;text-transform:uppercase;
+  position:relative;
+}
+.bn i{font-size:1.15rem;transition:var(--trans);}
+.bn.active{color:var(--primary);}
+.bn.active i{transform:scale(1.1);}
+.bn.active::before{
+  content:'';position:absolute;top:0;left:20%;right:20%;
+  height:2.5px;background:linear-gradient(90deg,var(--primary),var(--secondary));
+  border-radius:0 0 3px 3px;
+}
+
+/* ============================================================
+   HERO / BANNERS
+============================================================ */
+.hero{
+  position:relative;overflow:hidden;
+  padding:32px 20px 28px;
+  background:linear-gradient(135deg,var(--primary-dark),var(--primary) 60%,var(--secondary));
+  color:white;
+}
+.hero-mesh{
+  position:absolute;inset:0;
+  background:radial-gradient(ellipse at 80% 20%,rgba(255,255,255,.08) 0%,transparent 60%),
+             radial-gradient(ellipse at 20% 80%,rgba(6,182,212,.2) 0%,transparent 50%);
+}
+.hero-dots{
+  position:absolute;inset:0;
+  background-image:radial-gradient(rgba(255,255,255,.07) 1px,transparent 1px);
+  background-size:24px 24px;
+}
+.hero-content{position:relative;z-index:1;}
+.hero-tag{
+  display:inline-flex;align-items:center;gap:6px;
+  background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.2);
+  border-radius:20px;padding:4px 12px;font-size:.68rem;
+  font-weight:700;letter-spacing:1.5px;text-transform:uppercase;
+  margin-bottom:12px;backdrop-filter:blur(4px);
+}
+.hero-h{font-family:var(--ff2);font-size:2.2rem;font-weight:800;line-height:1.1;margin-bottom:10px;}
+.hero-p{font-size:.85rem;opacity:.85;line-height:1.6;max-width:340px;}
+.hero-actions{display:flex;gap:10px;margin-top:18px;flex-wrap:wrap;}
+.hero-stats{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  background:rgba(255,255,255,.1);border-radius:var(--radius-sm);
+  margin-top:20px;overflow:hidden;border:1px solid rgba(255,255,255,.15);
+}
+.hero-stat{padding:12px 8px;text-align:center;border-right:1px solid rgba(255,255,255,.1);}
+.hero-stat:last-child{border-right:none;}
+.hero-stat-n{font-family:var(--ff2);font-size:1.6rem;font-weight:800;}
+.hero-stat-l{font-size:.6rem;opacity:.7;text-transform:uppercase;letter-spacing:.5px;margin-top:2px;}
+
+/* ============================================================
+   BUTTONS
+============================================================ */
+.btn-primary{
+  background:white;color:var(--primary);border:none;
+  border-radius:var(--radius-sm);padding:11px 20px;
+  font-size:.85rem;font-weight:700;
+  display:flex;align-items:center;gap:7px;
+  transition:var(--trans);box-shadow:0 4px 14px rgba(0,0,0,.15);
+}
+.btn-primary:hover{transform:translateY(-2px);}
+.btn-outline{
+  background:rgba(255,255,255,.1);color:white;
+  border:1.5px solid rgba(255,255,255,.3);
+  border-radius:var(--radius-sm);padding:11px 20px;
+  font-size:.85rem;font-weight:700;
+  display:flex;align-items:center;gap:7px;
+  transition:var(--trans);
+}
+.btn-outline:hover{background:rgba(255,255,255,.2);}
+.btn-indigo{
+  background:var(--primary);color:white;border:none;
+  border-radius:var(--radius-sm);padding:13px 20px;
+  font-size:.9rem;font-weight:700;width:100%;
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  transition:var(--trans);box-shadow:0 4px 14px rgba(79,70,229,.35);
+}
+.btn-indigo:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(79,70,229,.45);}
+.btn-indigo:active{transform:scale(.98);}
+.btn-danger{background:var(--danger);color:white;border:none;border-radius:var(--radius-sm);padding:13px 20px;font-size:.9rem;font-weight:700;width:100%;display:flex;align-items:center;justify-content:center;gap:8px;transition:var(--trans);}
+.btn-success{background:var(--success);color:white;border:none;border-radius:var(--radius-sm);padding:13px 20px;font-size:.9rem;font-weight:700;display:flex;align-items:center;justify-content:center;gap:8px;transition:var(--trans);}
+
+/* ============================================================
+   CARDS
+============================================================ */
+.card{background:var(--card);border-radius:var(--radius);border:1px solid var(--border);overflow:hidden;transition:background .3s,border-color .3s;}
+.card-pad{padding:18px 20px;}
+.card-hover:hover{box-shadow:var(--shadow-md);transform:translateY(-2px);transition:var(--trans);}
+.card-accent{border-left:4px solid var(--primary);}
+.card-accent-green{border-left:4px solid var(--success);}
+.card-accent-amber{border-left:4px solid var(--accent);}
+.card-accent-red{border-left:4px solid var(--danger);}
+
+/* ============================================================
+   SECTION HEADERS
+============================================================ */
+.sec-hdr{padding:20px 16px 10px;display:flex;align-items:center;justify-content:space-between;}
+.sec-hdr-left{display:flex;align-items:center;gap:10px;}
+.sec-icon{width:34px;height:34px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:.85rem;flex-shrink:0;}
+.sec-icon-primary{background:rgba(79,70,229,.1);color:var(--primary);}
+.sec-icon-green{background:rgba(16,185,129,.1);color:var(--success);}
+.sec-icon-amber{background:rgba(245,158,11,.1);color:var(--accent);}
+.sec-icon-cyan{background:rgba(6,182,212,.1);color:var(--secondary);}
+.sec-icon-red{background:rgba(239,68,68,.1);color:var(--danger);}
+.sec-title{font-weight:800;font-size:.95rem;color:var(--text);}
+.sec-sub{font-size:.7rem;color:var(--text2);margin-top:1px;}
+.sec-link{font-size:.75rem;color:var(--primary);font-weight:700;background:none;border:none;}
+
+/* ============================================================
+   TAGS / BADGES
+============================================================ */
+.tag{display:inline-block;font-size:.62rem;font-weight:700;padding:3px 9px;border-radius:5px;letter-spacing:.5px;text-transform:uppercase;}
+.tag-primary{background:rgba(79,70,229,.1);color:var(--primary);}
+.tag-green{background:rgba(16,185,129,.1);color:var(--success);}
+.tag-amber{background:rgba(245,158,11,.1);color:var(--accent);}
+.tag-red{background:rgba(239,68,68,.1);color:var(--danger);}
+.tag-cyan{background:rgba(6,182,212,.1);color:var(--secondary);}
+.tag-purple{background:rgba(139,92,246,.1);color:#8B5CF6;}
+
+/* ============================================================
+   XP / GAMIFICATION
+============================================================ */
+.xp-bar-wrap{height:8px;background:var(--surface);border-radius:4px;overflow:hidden;margin:6px 0;}
+.xp-bar-fill{height:100%;background:linear-gradient(90deg,var(--primary),var(--secondary));border-radius:4px;transition:width .6s ease;}
+.xp-chip{
+  display:inline-flex;align-items:center;gap:5px;
+  background:linear-gradient(135deg,var(--accent),#F97316);
+  color:white;border-radius:20px;padding:3px 10px;
+  font-size:.72rem;font-weight:800;
+}
+.streak-chip{
+  display:inline-flex;align-items:center;gap:5px;
+  background:linear-gradient(135deg,var(--danger),#F97316);
+  color:white;border-radius:20px;padding:3px 10px;
+  font-size:.72rem;font-weight:800;
+}
+.badge-earned{
+  width:54px;height:54px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.6rem;border:3px solid var(--accent);
+  background:linear-gradient(135deg,rgba(245,158,11,.1),rgba(249,115,22,.1));
+  position:relative;
+}
+.badge-earned.locked{filter:grayscale(1);opacity:.4;}
+
+/* ============================================================
+   ACCORDION (rights/resp)
+============================================================ */
+.acc-item{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:var(--radius-sm);margin-bottom:10px;
+  overflow:hidden;transition:var(--trans);
+}
+.acc-item.open{border-color:rgba(79,70,229,.3);}
+.acc-hdr{
+  padding:14px 16px;display:flex;align-items:center;
+  gap:12px;cursor:pointer;transition:var(--trans);
+}
+.acc-hdr:hover{background:var(--surface);}
+.acc-item.open .acc-hdr{background:rgba(79,70,229,.04);}
+.acc-icon{
+  width:38px;height:38px;border-radius:11px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.1rem;flex-shrink:0;
+}
+.acc-info{flex:1;min-width:0;}
+.acc-title{font-weight:700;font-size:.88rem;color:var(--text);}
+.acc-sect{font-size:.68rem;color:var(--text2);margin-top:2px;font-weight:600;}
+.acc-chevron{color:var(--text3);font-size:.8rem;transition:transform .25s ease;flex-shrink:0;}
+.acc-item.open .acc-chevron{transform:rotate(180deg);}
+.acc-body{
+  display:none;border-top:1px solid var(--border);
+  padding:16px;background:var(--surface);
+}
+.acc-item.open .acc-body{display:block;animation:fadeUp .25s ease;}
+.info-lbl{font-size:.65rem;font-weight:800;text-transform:uppercase;letter-spacing:1.5px;margin-top:12px;margin-bottom:5px;}
+.info-lbl:first-child{margin-top:0;}
+.info-lbl-primary{color:var(--primary);}
+.info-lbl-green{color:var(--success);}
+.info-lbl-amber{color:var(--accent);}
+.info-txt{font-size:.84rem;color:var(--text2);line-height:1.7;}
+
+/* ============================================================
+   QUIZ
+============================================================ */
+.quiz-size-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;padding:0 16px;}
+.qsz{
+  background:var(--card);border:2px solid var(--border);
+  border-radius:var(--radius-sm);padding:14px 8px;
+  text-align:center;cursor:pointer;transition:var(--trans);
+}
+.qsz.active{border-color:var(--primary);background:rgba(79,70,229,.06);}
+.qsz-n{font-family:var(--ff2);font-size:1.8rem;font-weight:800;color:var(--text2);transition:var(--trans);}
+.qsz.active .qsz-n{color:var(--primary);}
+.qsz-l{font-size:.62rem;font-weight:700;color:var(--text3);text-transform:uppercase;margin-top:4px;}
+.qsz:active{transform:scale(.96);}
+
+.q-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);margin-bottom:12px;overflow:hidden;animation:fadeUp .3s ease;}
+.q-hdr{padding:14px 16px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px;}
+.q-num{font-size:.7rem;font-weight:800;color:var(--text3);background:var(--surface);padding:3px 9px;border-radius:var(--radius-xs);}
+.q-text{padding:16px;font-size:.9rem;font-weight:700;line-height:1.5;color:var(--text);}
+.opts{padding:0 12px 14px;display:flex;flex-direction:column;gap:8px;}
+.opt{
+  background:var(--surface);border:1.5px solid var(--border);
+  border-radius:var(--radius-sm);padding:11px 14px;
+  text-align:left;cursor:pointer;transition:var(--trans);
+  font-size:.85rem;color:var(--text);display:flex;align-items:center;gap:12px;
+}
+.opt-letter{
+  width:26px;height:26px;border-radius:8px;background:var(--card);
+  border:1.5px solid var(--border);display:flex;align-items:center;justify-content:center;
+  font-size:.72rem;font-weight:800;flex-shrink:0;
+}
+.opt.sel{border-color:var(--primary)!important;background:rgba(79,70,229,.05);}
+.opt.correct{border-color:var(--success)!important;background:rgba(16,185,129,.08)!important;color:var(--success)!important;}
+.opt.correct .opt-letter{background:var(--success);color:white;border-color:var(--success);}
+.opt.wrong{border-color:var(--danger)!important;background:rgba(239,68,68,.07)!important;color:var(--danger)!important;}
+.opt.wrong .opt-letter{background:var(--danger);color:white;border-color:var(--danger);}
+.opt:disabled{cursor:not-allowed;}
+.q-fb{margin:0 12px 12px;padding:10px 14px;border-radius:var(--radius-xs);font-size:.82rem;font-weight:700;display:none;align-items:center;gap:8px;}
+.q-fb-ok{background:rgba(16,185,129,.1);border:1px solid rgba(16,185,129,.2);color:var(--success);}
+.q-fb-no{background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.15);color:var(--danger);}
+.next-btn{margin:0 12px 14px;width:calc(100% - 24px);background:var(--primary);color:white;border:none;border-radius:var(--radius-sm);padding:12px;font-size:.88rem;font-weight:700;display:none;transition:var(--trans);}
+.next-btn:hover{background:var(--primary-dark);}
+
+.prog-row{display:flex;align-items:center;gap:12px;padding:0 16px 12px;}
+.prog-bar-wrap{flex:1;height:6px;background:var(--surface);border-radius:3px;overflow:hidden;}
+.prog-bar-fill{height:100%;background:linear-gradient(90deg,var(--primary),var(--secondary));border-radius:3px;transition:width .4s ease;}
+.prog-lbl{font-size:.72rem;color:var(--text3);white-space:nowrap;font-weight:700;}
+.live-score{background:rgba(79,70,229,.1);color:var(--primary);border-radius:var(--radius-xs);padding:3px 10px;font-size:.72rem;font-weight:800;}
+
+.result-card-hero{
+  background:linear-gradient(135deg,var(--primary-dark),var(--primary),var(--secondary));
+  color:white;padding:32px 20px;text-align:center;border-radius:var(--radius);
+  margin-bottom:14px;
+}
+.result-trophy{font-size:3.5rem;margin-bottom:10px;}
+.result-score{font-family:var(--ff2);font-size:3.8rem;font-weight:800;line-height:1;}
+.result-msg{font-size:1rem;font-weight:700;margin-top:6px;}
+.result-sub{font-size:.82rem;opacity:.8;margin-top:4px;}
+.result-grid{display:grid;grid-template-columns:1fr 1fr 1fr;border-top:1px solid var(--border);}
+.r-stat{padding:16px 12px;text-align:center;border-right:1px solid var(--border);}
+.r-stat:last-child{border-right:none;}
+.r-stat-n{font-family:var(--ff2);font-size:1.8rem;font-weight:800;}
+
+/* ============================================================
+   FORM FIELDS
+============================================================ */
+.f-lbl{display:block;font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.8px;color:var(--text2);margin-bottom:6px;}
+.f-inp{
+  width:100%;background:var(--surface);border:1.5px solid var(--border);
+  border-radius:var(--radius-sm);padding:12px 14px;
+  font-size:.88rem;color:var(--text);outline:none;transition:var(--trans);
+}
+.f-inp::placeholder{color:var(--text3);}
+.f-inp:focus{border-color:var(--primary);box-shadow:0 0 0 3px rgba(79,70,229,.1);}
+.f-inp.err{border-color:var(--danger);}
+.f-err{font-size:.72rem;color:var(--danger);margin-top:4px;display:none;}
+.f-select{width:100%;background:var(--surface);border:1.5px solid var(--border);border-radius:var(--radius-sm);padding:12px 14px;font-size:.88rem;color:var(--text);outline:none;transition:var(--trans);appearance:none;}
+.f-select:focus{border-color:var(--primary);}
+.f-textarea{width:100%;min-height:90px;background:var(--surface);border:1.5px solid var(--border);border-radius:var(--radius-sm);padding:12px 14px;font-size:.88rem;color:var(--text);resize:none;outline:none;transition:var(--trans);line-height:1.6;}
+.f-textarea:focus{border-color:var(--primary);box-shadow:0 0 0 3px rgba(79,70,229,.1);}
+.f-group{margin-bottom:14px;}
+.f-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.f-divider{height:1px;background:var(--border);margin:18px 0;}
+.f-section-title{font-weight:800;font-size:.88rem;color:var(--text);margin-bottom:14px;display:flex;align-items:center;gap:8px;}
+
+/* ============================================================
+   TABS
+============================================================ */
+.tab-bar{display:flex;border-bottom:1px solid var(--border);padding:0 16px;overflow-x:auto;scrollbar-width:none;}
+.tab-bar::-webkit-scrollbar{display:none;}
+.tab-btn{
+  background:none;border:none;color:var(--text3);
+  padding:12px 18px;font-size:.82rem;font-weight:700;
+  border-bottom:2.5px solid transparent;cursor:pointer;
+  transition:var(--trans);white-space:nowrap;
+  display:flex;align-items:center;gap:7px;
+}
+.tab-btn.active{color:var(--primary);border-bottom-color:var(--primary);}
+.tab-panel{display:none;padding:14px 16px;}
+.tab-panel.active{display:block;animation:fadeUp .3s ease;}
+
+/* ============================================================
+   CHIPS / FILTERS
+============================================================ */
+.chips{display:flex;gap:8px;padding:8px 16px;overflow-x:auto;scrollbar-width:none;}
+.chips::-webkit-scrollbar{display:none;}
+.chip{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:20px;padding:6px 14px;font-size:.75rem;
+  font-weight:700;color:var(--text3);cursor:pointer;
+  transition:var(--trans);white-space:nowrap;
+}
+.chip.active,.chip:hover{background:rgba(79,70,229,.1);border-color:rgba(79,70,229,.3);color:var(--primary);}
+
+/* ============================================================
+   VIDEO CARDS
+============================================================ */
+.vid-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);margin-bottom:14px;overflow:hidden;cursor:pointer;transition:var(--trans);}
+.vid-card:hover{box-shadow:var(--shadow-md);transform:translateY(-2px);}
+.vid-thumb{height:170px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;}
+.vid-overlay{position:absolute;inset:0;background:linear-gradient(180deg,transparent 30%,rgba(0,0,0,.6) 100%);}
+.vid-play{width:54px;height:54px;border-radius:50%;background:rgba(255,255,255,.2);backdrop-filter:blur(6px);border:2px solid rgba(255,255,255,.3);display:flex;align-items:center;justify-content:center;color:white;font-size:1.3rem;position:relative;z-index:1;transition:var(--trans);}
+.vid-card:hover .vid-play{transform:scale(1.1);background:rgba(255,255,255,.3);}
+.vid-info{padding:14px 16px;}
+.vid-title{font-weight:700;font-size:.9rem;margin-bottom:5px;}
+.vid-desc{font-size:.78rem;color:var(--text3);line-height:1.5;}
+
+/* ============================================================
+   NOTES
+============================================================ */
+.note-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-sm);margin-bottom:10px;overflow:hidden;}
+.note-card-hdr{padding:13px 16px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:9px;}
+.note-dot{width:9px;height:9px;border-radius:50%;flex-shrink:0;}
+.note-hdr-t{font-weight:800;font-size:.87rem;}
+.note-card-body{padding:12px 16px;}
+.note-list{list-style:none;}
+.note-list li{padding:8px 0;border-bottom:1px solid var(--border);font-size:.83rem;color:var(--text2);line-height:1.55;display:flex;align-items:flex-start;gap:9px;}
+.note-list li:last-child{border-bottom:none;}
+.note-list li::before{content:'▸';color:var(--primary);flex-shrink:0;font-size:.7rem;margin-top:3px;}
+.note-list li strong{color:var(--text);}
+
+/* ============================================================
+   CONTACT / EMERGENCY
+============================================================ */
+.contact-card{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:var(--radius-sm);padding:14px 16px;
+  display:flex;align-items:center;gap:14px;margin-bottom:10px;
+  cursor:pointer;transition:var(--trans);
+}
+.contact-card:hover{box-shadow:var(--shadow);}
+.contact-icon{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0;}
+.contact-name{font-weight:700;font-size:.88rem;}
+.contact-num{font-size:.78rem;color:var(--text3);margin-top:2px;}
+.sos-btn{
+  width:100%;background:linear-gradient(135deg,var(--danger),#C2185B);
+  border:none;border-radius:var(--radius);padding:18px;
+  color:white;font-size:1.1rem;font-weight:800;
+  display:flex;align-items:center;justify-content:center;gap:10px;
+  animation:sosPulse 2s ease infinite;box-shadow:0 6px 24px rgba(239,68,68,.4);
+  margin-bottom:16px;
+}
+@keyframes sosPulse{0%,100%{box-shadow:0 6px 24px rgba(239,68,68,.4);}50%{box-shadow:0 6px 36px rgba(239,68,68,.65);}}
+
+/* ============================================================
+   MODAL / SHEET
+============================================================ */
+.modal-bg{position:fixed;inset:0;z-index:900;background:rgba(0,0,0,.7);backdrop-filter:blur(8px);display:none;align-items:flex-end;justify-content:center;}
+.modal-bg.open{display:flex;animation:fadeIn .2s ease;}
+@keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+.modal-sheet{width:100%;max-width:600px;background:var(--card);border-radius:24px 24px 0 0;border-top:1px solid var(--border);max-height:85vh;overflow-y:auto;animation:sheetUp .35s cubic-bezier(.34,1.56,.64,1);}
+@keyframes sheetUp{from{transform:translateY(100%);}to{transform:translateY(0);}}
+.modal-handle{width:40px;height:4px;border-radius:2px;background:var(--border);margin:14px auto 0;}
+.modal-hdr{padding:16px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;}
+.modal-title-t{font-weight:800;font-size:1rem;color:var(--text);}
+.modal-close{width:32px;height:32px;border-radius:var(--radius-xs);background:var(--surface);border:1px solid var(--border);color:var(--text2);display:flex;align-items:center;justify-content:center;font-size:.9rem;cursor:pointer;transition:var(--trans);}
+.modal-close:hover{color:var(--text);}
+.modal-body{padding:20px;}
+
+/* ============================================================
+   TOAST
+============================================================ */
+.toast{
+  position:fixed;top:74px;left:50%;transform:translateX(-50%) translateY(-20px);
+  background:var(--text);color:var(--card);border-radius:var(--radius-sm);
+  padding:10px 20px;font-size:.82rem;font-weight:700;
+  z-index:9999;display:none;white-space:nowrap;box-shadow:var(--shadow-md);
+}
+.toast.show{display:block;animation:toastIn .3s cubic-bezier(.34,1.56,.64,1) forwards;}
+@keyframes toastIn{from{transform:translateX(-50%) translateY(-20px);opacity:0;}to{transform:translateX(-50%) translateY(0);opacity:1;}}
+
+/* ============================================================
+   CONFETTI
+============================================================ */
+.confetti-piece{position:fixed;width:10px;height:10px;border-radius:2px;z-index:9999;pointer-events:none;animation:confettiFall 3s ease forwards;}
+@keyframes confettiFall{0%{transform:translateY(-100px) rotate(0deg);opacity:1;}100%{transform:translateY(120vh) rotate(720deg);opacity:0;}}
+
+/* ============================================================
+   PROGRESS / CHARTS
+============================================================ */
+.chart-bar-wrap{display:flex;flex-direction:column;gap:8px;padding:14px 16px;}
+.chart-row{display:flex;align-items:center;gap:10px;}
+.chart-label{font-size:.75rem;font-weight:700;color:var(--text2);width:60px;flex-shrink:0;}
+.chart-bar-bg{flex:1;height:10px;background:var(--surface);border-radius:5px;overflow:hidden;}
+.chart-bar-val{height:100%;border-radius:5px;background:linear-gradient(90deg,var(--primary),var(--secondary));transition:width .8s ease;}
+.chart-pct{font-size:.72rem;font-weight:700;color:var(--text3);width:34px;text-align:right;}
+
+/* ============================================================
+   GLOSSARY
+============================================================ */
+.gloss-item{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-sm);padding:14px 16px;margin-bottom:10px;}
+.gloss-term{font-weight:800;font-size:.9rem;color:var(--primary);margin-bottom:4px;}
+.gloss-def{font-size:.83rem;color:var(--text2);line-height:1.6;}
+
+/* ============================================================
+   SETTINGS
+============================================================ */
+.setting-row{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:var(--radius-sm);padding:14px 16px;
+  display:flex;align-items:center;justify-content:space-between;
+  margin-bottom:10px;
+}
+.setting-left{display:flex;align-items:center;gap:12px;}
+.setting-icon{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:.9rem;}
+.setting-title{font-weight:700;font-size:.87rem;}
+.setting-sub{font-size:.72rem;color:var(--text2);margin-top:1px;}
+.toggle{
+  width:46px;height:26px;border-radius:13px;
+  background:var(--surface);border:2px solid var(--border);
+  position:relative;cursor:pointer;transition:var(--trans);flex-shrink:0;
+}
+.toggle.on{background:var(--primary);border-color:var(--primary);}
+.toggle-thumb{position:absolute;top:2px;left:2px;width:18px;height:18px;border-radius:50%;background:white;transition:var(--trans);box-shadow:0 2px 4px rgba(0,0,0,.2);}
+.toggle.on .toggle-thumb{transform:translateX(20px);}
+.font-controls{display:flex;gap:8px;}
+.font-btn{
+  width:36px;height:36px;border-radius:var(--radius-xs);
+  background:var(--surface);border:1px solid var(--border);
+  color:var(--text);cursor:pointer;font-weight:700;
+  font-size:.9rem;transition:var(--trans);
+}
+.font-btn:hover{border-color:var(--primary);color:var(--primary);}
+
+/* ============================================================
+   LOGIN
+============================================================ */
+#login-screen{
+  position:fixed;inset:0;z-index:9998;
+  background:linear-gradient(135deg,var(--primary-dark),var(--primary) 60%,var(--secondary));
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  padding:30px 24px;
+}
+.login-card{
+  background:rgba(255,255,255,.95);border-radius:24px;
+  padding:28px 24px;width:100%;max-width:380px;
+  box-shadow:0 24px 64px rgba(0,0,0,.25);
+}
+[data-theme="dark"] .login-card{background:rgba(26,26,46,.95);}
+.login-logo-wrap{
+  width:64px;height:64px;border-radius:18px;
+  background:linear-gradient(135deg,var(--primary),var(--secondary));
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.8rem;margin:0 auto 16px;
+}
+.login-title{font-family:var(--ff2);font-size:1.5rem;font-weight:800;text-align:center;color:var(--text);margin-bottom:4px;}
+.login-sub{font-size:.8rem;color:var(--text2);text-align:center;margin-bottom:22px;}
+.pass-wrap{position:relative;}
+.pass-toggle{position:absolute;right:12px;top:50%;transform:translateY(-50%);background:none;border:none;color:var(--text3);font-size:.9rem;cursor:pointer;transition:var(--trans);}
+.pass-toggle:hover{color:var(--primary);}
+.login-err{background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.2);border-radius:var(--radius-xs);padding:9px 14px;font-size:.8rem;color:var(--danger);font-weight:600;margin-bottom:14px;display:none;align-items:center;gap:8px;}
+.login-divider{display:flex;align-items:center;gap:12px;margin:16px 0;color:var(--text3);font-size:.78rem;}
+.login-divider::before,.login-divider::after{content:'';flex:1;height:1px;background:var(--border);}
+.guest-btn-login{
+  width:100%;background:transparent;border:1.5px solid var(--border);
+  border-radius:var(--radius-sm);padding:12px;color:var(--text2);
+  font-size:.87rem;font-weight:700;cursor:pointer;transition:var(--trans);
+}
+.guest-btn-login:hover{border-color:var(--primary);color:var(--primary);}
+.login-hint{margin-top:14px;text-align:center;font-size:.72rem;color:var(--text3);}
+.zim-zw-flag{display:flex;flex-direction:column;width:24px;height:16px;border-radius:3px;overflow:hidden;display:inline-flex;margin-right:4px;}
+
+/* ============================================================
+   PROFILE
+============================================================ */
+.profile-hero{
+  background:linear-gradient(135deg,var(--primary-dark),var(--primary));
+  padding:28px 20px;color:white;text-align:center;
+}
+.profile-avatar{
+  width:76px;height:76px;border-radius:50%;
+  background:rgba(255,255,255,.2);border:3px solid rgba(255,255,255,.4);
+  display:flex;align-items:center;justify-content:center;
+  font-size:2.2rem;margin:0 auto 12px;
+}
+.profile-name{font-family:var(--ff2);font-size:1.3rem;font-weight:800;}
+.profile-role{font-size:.8rem;opacity:.8;margin-top:3px;}
+.profile-xp-row{display:flex;align-items:center;gap:10px;margin-top:14px;}
+.profile-xp-label{font-size:.72rem;opacity:.8;}
+
+/* ============================================================
+   MISC
+============================================================ */
+.tip-box{background:rgba(79,70,229,.06);border:1px solid rgba(79,70,229,.15);border-radius:var(--radius-sm);padding:12px 16px;display:flex;gap:10px;align-items:flex-start;margin:0 16px 14px;}
+.tip-icon{font-size:1rem;flex-shrink:0;margin-top:1px;}
+.tip-txt{font-size:.82rem;color:var(--text2);line-height:1.6;}
+.tip-txt strong{color:var(--primary);}
+
+.divider{height:1px;background:var(--border);margin:14px 0;}
+
+.empty-state{text-align:center;padding:40px 20px;}
+.empty-icon{font-size:3rem;margin-bottom:12px;}
+.empty-title{font-weight:800;font-size:1rem;margin-bottom:6px;}
+.empty-sub{font-size:.83rem;color:var(--text2);}
+
+.img-cover{width:100%;height:180px;object-fit:cover;border-radius:var(--radius-sm);display:block;}
+.emoji-thumb{width:100%;height:150px;border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;font-size:4rem;}
+
+/* ============================================================
+   CERTIFICATE
+============================================================ */
+.cert-wrap{
+  border:4px solid var(--primary);border-radius:var(--radius);
+  padding:28px 20px;text-align:center;
+  background:linear-gradient(135deg,rgba(79,70,229,.04),rgba(6,182,212,.04));
+}
+.cert-title{font-family:var(--ff2);font-size:1.5rem;font-weight:800;color:var(--primary);margin-bottom:6px;}
+.cert-sub{font-size:.8rem;color:var(--text2);}
+.cert-name{font-family:var(--ff2);font-size:1.3rem;font-weight:800;color:var(--text);margin:14px 0;border-bottom:2px solid var(--primary);padding-bottom:6px;}
+
+/* ============================================================
+   RESPONSIVE
+============================================================ */
+@media(min-width:600px){
+  #app{max-width:600px;margin:0 auto;border:1px solid var(--border);}
+  .bottom-nav{max-width:600px;left:50%;transform:translateX(-50%);}
+  .toast{left:calc(50% + 0px);}
+}
+
+.font-sm{font-size:90%!important;}
+.font-lg{font-size:110%!important;}
+
+.high-contrast{filter:contrast(1.4);}
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     SPLASH SCREEN
+============================================================ -->
+<div id="splash">
+  <div style="display:flex;align-items:center;margin-bottom:6px;">
+    <div class="zim-flag-mini"><div class="zfm-s zfm-g"></div><div class="zfm-s zfm-y"></div><div class="zfm-s zfm-r"></div><div class="zfm-s zfm-b"></div></div>
+    <span style="font-size:.75rem;font-weight:800;letter-spacing:2px;text-transform:uppercase;opacity:.8;">Zimbabwe</span>
+  </div>
+  <div class="splash-logo-wrap">⚖️</div>
+  <div class="splash-title">Eastview Rights Hub</div>
+  <div class="splash-sub">Know Your Rights. Own Your Responsibilities.</div>
+  <div class="splash-bar-wrap"><div class="splash-bar"></div></div>
+  <div class="splash-version">v1.0.0 · Eastview Edition</div>
+</div>
+
+<!-- ============================================================
+     LOGIN SCREEN
+============================================================ -->
+<div id="login-screen" style="display:none;">
+  <div class="login-card">
+    <div class="login-logo-wrap">⚖️</div>
+    <div class="login-title">Welcome Back</div>
+    <div class="login-sub">🇿🇼 Eastview Teens Rights &amp; Responsibilities</div>
+    <div class="login-err" id="login-err"><i class="fa fa-circle-exclamation"></i><span id="login-err-msg">Invalid credentials</span></div>
+    <div class="f-group">
+      <label class="f-lbl">Username</label>
+      <input type="text" id="l-user" class="f-inp" placeholder="Enter username" autocomplete="username">
+    </div>
+    <div class="f-group">
+      <label class="f-lbl">Password</label>
+      <div class="pass-wrap">
+        <input type="password" id="l-pass" class="f-inp" placeholder="Enter password" autocomplete="current-password" style="padding-right:44px;">
+        <button class="pass-toggle" onclick="toggleLoginPwd()" type="button"><i class="fa fa-eye" id="l-eye"></i></button>
+      </div>
+    </div>
+    <button class="btn-indigo" onclick="doLogin()" style="margin-top:4px;"><i class="fa fa-right-to-bracket"></i> Sign In</button>
+    <div class="login-divider">or</div>
+    <button class="guest-btn-login" onclick="doGuest()"><i class="fa fa-user-secret"></i> Continue as Guest</button>
+    <div class="login-hint">Demo: <strong>teen</strong> / <strong>rights123</strong><br>Your data stays on this device only 🔒</div>
+  </div>
+</div>
+
+<!-- ============================================================
+     MAIN APP
+============================================================ -->
+<div id="app">
+
+<!-- TOP NAV -->
+<nav class="top-nav">
+  <div class="nav-logo">⚖️</div>
+  <div class="nav-title-wrap">
+    <div class="nav-title" id="nav-title-txt">Eastview Rights Hub</div>
+    <div class="nav-sub">Zimbabwe Constitution 2013</div>
+  </div>
+  <div class="nav-actions">
+    <button class="nav-btn notif-dot" onclick="showToast('📢 Daily Tip: Know your right to education — Section 75!')" title="Notifications"><i class="fa fa-bell"></i></button>
+    <button class="nav-btn" onclick="goScreen('settings')" title="Settings"><i class="fa fa-sliders"></i></button>
+    <button class="nav-btn" onclick="doLogout()" title="Sign Out"><i class="fa fa-right-from-bracket"></i></button>
+  </div>
+</nav>
+
+<!-- MAIN CONTENT -->
+<div class="main-scroll" id="main-scroll">
+
+<!-- ════════════════ HOME ════════════════ -->
+<div id="s-home" class="screen active">
+  <div class="hero">
+    <div class="hero-mesh"></div>
+    <div class="hero-dots"></div>
+    <div class="hero-content">
+      <div class="hero-tag">
+        <div style="display:flex;flex-direction:column;width:18px;height:14px;border-radius:2px;overflow:hidden;"><div style="flex:1;background:#006400;"></div><div style="flex:1;background:#FFD200;"></div><div style="flex:1;background:#D21034;"></div><div style="flex:1;background:#000;"></div></div>
+        Zimbabwe Constitution · Chapter 4
+      </div>
+      <h1 class="hero-h">Know Your<br>Rights 🇿🇼</h1>
+      <p class="hero-p">Empowering Eastview teenagers with knowledge of constitutional rights &amp; responsibilities.</p>
+      <div class="hero-actions">
+        <button class="btn-primary" onclick="goScreen('rights')"><i class="fa fa-shield-halved"></i> Explore Rights</button>
+        <button class="btn-outline" onclick="goScreen('quiz')"><i class="fa fa-trophy"></i> Take Quiz</button>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat"><div class="hero-stat-n">27</div><div class="hero-stat-l">Rights</div></div>
+        <div class="hero-stat"><div class="hero-stat-n">20</div><div class="hero-stat-l">Duties</div></div>
+        <div class="hero-stat"><div class="hero-stat-n">40</div><div class="hero-stat-l">Quiz Q's</div></div>
+        <div class="hero-stat"><div class="hero-stat-n" id="user-xp-hero">0</div><div class="hero-stat-l">Your XP</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Profile mini -->
+  <div style="padding:14px 16px 0;">
+    <div class="card card-pad" style="display:flex;align-items:center;gap:14px;">
+      <div style="width:46px;height:46px;border-radius:50%;background:linear-gradient(135deg,var(--primary),var(--secondary));display:flex;align-items:center;justify-content:center;font-size:1.4rem;flex-shrink:0;">👤</div>
+      <div style="flex:1;">
+        <div style="font-weight:800;font-size:.9rem;" id="home-user-name">Welcome, Teen!</div>
+        <div style="font-size:.72rem;color:var(--text2);margin-top:2px;">Level <span id="home-user-level">1</span> · <span id="home-user-xp">0</span> XP · 🔥<span id="home-streak">0</span> day streak</div>
+        <div class="xp-bar-wrap"><div class="xp-bar-fill" id="home-xp-bar" style="width:0%"></div></div>
+      </div>
+      <button onclick="goScreen('profile')" style="background:rgba(79,70,229,.1);border:none;border-radius:var(--radius-xs);padding:7px 12px;color:var(--primary);font-size:.78rem;font-weight:700;">View →</button>
+    </div>
+  </div>
+
+  <!-- Emergency Banner -->
+  <div style="margin:12px 16px 0;">
+    <button class="sos-btn" onclick="goScreen('emergency')"><i class="fa fa-phone-volume"></i> 🆘 Emergency: Childline 116 — Tap to Call</button>
+  </div>
+
+  <div class="tip-box" style="margin-top:14px;">
+    <div class="tip-icon">💡</div>
+    <div class="tip-txt"><strong>Did you know?</strong> All rights listed are from <strong>Zimbabwe's Constitution (2013), Chapter 4</strong>. They apply to every teenager in Eastview regardless of race, gender, or religion.</div>
+  </div>
+
+  <!-- Quick access -->
+  <div class="sec-hdr"><div class="sec-hdr-left"><div class="sec-icon sec-icon-primary"><i class="fa fa-grid-2"></i></div><div><div class="sec-title">Quick Access</div><div class="sec-sub">Tap to explore</div></div></div></div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:0 16px 16px;">
+    <div class="card card-pad card-hover" onclick="goScreen('definitions')" style="cursor:pointer;border-top:3px solid var(--primary);">
+      <div style="font-size:1.8rem;margin-bottom:10px;">📖</div>
+      <div style="font-weight:800;font-size:.85rem;">Definitions</div>
+      <div style="font-size:.72rem;color:var(--text2);margin-top:3px;">Rights &amp; Responsibilities</div>
+    </div>
+    <div class="card card-pad card-hover" onclick="goScreen('responsibilities')" style="cursor:pointer;border-top:3px solid var(--danger);">
+      <div style="font-size:1.8rem;margin-bottom:10px;">⭐</div>
+      <div style="font-weight:800;font-size:.85rem;">Responsibilities</div>
+      <div style="font-size:.72rem;color:var(--text2);margin-top:3px;">School, Home &amp; Community</div>
+    </div>
+    <div class="card card-pad card-hover" onclick="goScreen('notes')" style="cursor:pointer;border-top:3px solid var(--accent);">
+      <div style="font-size:1.8rem;margin-bottom:10px;">📝</div>
+      <div style="font-weight:800;font-size:.85rem;">Study Notes</div>
+      <div style="font-size:.72rem;color:var(--text2);margin-top:3px;">Key facts &amp; your notes</div>
+    </div>
+    <div class="card card-pad card-hover" onclick="goScreen('glossary')" style="cursor:pointer;border-top:3px solid var(--secondary);">
+      <div style="font-size:1.8rem;margin-bottom:10px;">📚</div>
+      <div style="font-weight:800;font-size:.85rem;">Glossary</div>
+      <div style="font-size:.72rem;color:var(--text2);margin-top:3px;">Legal terms simplified</div>
+    </div>
+  </div>
+
+  <!-- Badges -->
+  <div class="sec-hdr"><div class="sec-hdr-left"><div class="sec-icon sec-icon-amber"><i class="fa fa-medal"></i></div><div><div class="sec-title">Your Badges</div><div class="sec-sub">Earn by learning</div></div></div><button class="sec-link" onclick="goScreen('profile')">See all</button></div>
+  <div style="display:flex;gap:14px;padding:0 16px 16px;overflow-x:auto;scrollbar-width:none;">
+    <div style="text-align:center;flex-shrink:0;">
+      <div class="badge-earned" id="badge-learner">🎓</div>
+      <div style="font-size:.65rem;margin-top:5px;font-weight:700;color:var(--text2);">Learner</div>
+    </div>
+    <div style="text-align:center;flex-shrink:0;">
+      <div class="badge-earned locked" id="badge-scholar">📚</div>
+      <div style="font-size:.65rem;margin-top:5px;font-weight:700;color:var(--text3);">Scholar</div>
+    </div>
+    <div style="text-align:center;flex-shrink:0;">
+      <div class="badge-earned locked" id="badge-quiz">🏆</div>
+      <div style="font-size:.65rem;margin-top:5px;font-weight:700;color:var(--text3);">Quiz Hero</div>
+    </div>
+    <div style="text-align:center;flex-shrink:0;">
+      <div class="badge-earned locked" id="badge-streak">🔥</div>
+      <div style="font-size:.65rem;margin-top:5px;font-weight:700;color:var(--text3);">Streak</div>
+    </div>
+    <div style="text-align:center;flex-shrink:0;">
+      <div class="badge-earned locked" id="badge-champ">⚖️</div>
+      <div style="font-size:.65rem;margin-top:5px;font-weight:700;color:var(--text3);">Champion</div>
+    </div>
+  </div>
+
+  <!-- 5 key rights preview -->
+  <div class="sec-hdr"><div class="sec-hdr-left"><div class="sec-icon sec-icon-green"><i class="fa fa-star"></i></div><div><div class="sec-title">Top 5 Rights for Teens</div><div class="sec-sub">Most important for you</div></div></div><button class="sec-link" onclick="goScreen('rights')">View all</button></div>
+  <div style="padding:0 16px 20px;display:flex;flex-direction:column;gap:9px;">
+    <div class="card card-pad" style="display:flex;align-items:center;gap:12px;">
+      <div style="width:40px;height:40px;border-radius:11px;background:rgba(16,185,129,.1);display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;">🎓</div>
+      <div><div style="font-weight:700;font-size:.87rem;">Right to Education · S.75</div><div style="font-size:.72rem;color:var(--text2);margin-top:2px;">State-funded education for all citizens</div></div>
+      <span class="tag tag-green" style="margin-left:auto;flex-shrink:0;">KEY</span>
+    </div>
+    <div class="card card-pad" style="display:flex;align-items:center;gap:12px;">
+      <div style="width:40px;height:40px;border-radius:11px;background:rgba(239,68,68,.1);display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;">❤️</div>
+      <div><div style="font-weight:700;font-size:.87rem;">Right to Life · S.48</div><div style="font-size:.72rem;color:var(--text2);margin-top:2px;">Life is protected by law</div></div>
+      <span class="tag tag-red" style="margin-left:auto;flex-shrink:0;">CORE</span>
+    </div>
+    <div class="card card-pad" style="display:flex;align-items:center;gap:12px;">
+      <div style="width:40px;height:40px;border-radius:11px;background:rgba(245,158,11,.1);display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;">💛</div>
+      <div><div style="font-weight:700;font-size:.87rem;">Right to Dignity · S.51</div><div style="font-size:.72rem;color:var(--text2);margin-top:2px;">Inherent dignity must be respected</div></div>
+      <span class="tag tag-amber" style="margin-left:auto;flex-shrink:0;">KEY</span>
+    </div>
+    <div class="card card-pad" style="display:flex;align-items:center;gap:12px;">
+      <div style="width:40px;height:40px;border-radius:11px;background:rgba(79,70,229,.1);display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;">⚖️</div>
+      <div><div style="font-weight:700;font-size:.87rem;">Freedom from Discrimination · S.56</div><div style="font-size:.72rem;color:var(--text2);margin-top:2px;">Equal treatment for all</div></div>
+      <span class="tag tag-primary" style="margin-left:auto;flex-shrink:0;">KEY</span>
+    </div>
+    <div class="card card-pad" style="display:flex;align-items:center;gap:12px;">
+      <div style="width:40px;height:40px;border-radius:11px;background:rgba(6,182,212,.1);display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;">🏥</div>
+      <div><div style="font-weight:700;font-size:.87rem;">Right to Health Care · S.76</div><div style="font-size:.72rem;color:var(--text2);margin-top:2px;">Access to basic health services</div></div>
+      <span class="tag tag-cyan" style="margin-left:auto;flex-shrink:0;">SOCIAL</span>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════ DEFINITIONS ════════════════ -->
+<div id="s-definitions" class="screen">
+  <div class="hero" style="padding:28px 20px 24px;">
+    <div class="hero-mesh"></div>
+    <div class="hero-content">
+      <div class="hero-tag">📖 FOUNDATIONS</div>
+      <h1 class="hero-h" style="font-size:1.8rem;">What Are Rights<br>&amp; Responsibilities?</h1>
+    </div>
+  </div>
+  <div style="padding:16px;">
+    <div class="card card-pad card-accent" style="margin-bottom:12px;">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+        <div style="width:38px;height:38px;border-radius:11px;background:rgba(79,70,229,.1);display:flex;align-items:center;justify-content:center;font-size:1.1rem;">⚖️</div>
+        <div><div style="font-weight:800;font-size:.95rem;color:var(--primary);">What are RIGHTS?</div><div style="font-size:.7rem;color:var(--text2);">Zimbabwe Constitution 2013, Chapter 4</div></div>
+      </div>
+      <p style="font-size:.85rem;color:var(--text2);line-height:1.75;"><strong style="color:var(--text);">Rights</strong> are entitlements and freedoms that every person is born with or is guaranteed by law. They protect individuals from abuse, discrimination, and unfair treatment.<br><br>In Zimbabwe, rights are enshrined in the <strong style="color:var(--primary);">Constitution of Zimbabwe (2013), Chapter 4 — the Declaration of Rights</strong>. This chapter protects every teenager regardless of gender, race, or background.</p>
+    </div>
+    <div class="card card-pad card-accent-red" style="margin-bottom:12px;">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+        <div style="width:38px;height:38px;border-radius:11px;background:rgba(239,68,68,.1);display:flex;align-items:center;justify-content:center;font-size:1.1rem;">🌟</div>
+        <div><div style="font-weight:800;font-size:.95rem;color:var(--danger);">What are RESPONSIBILITIES?</div><div style="font-size:.7rem;color:var(--text2);">Section 44 — Obligation to respect rights</div></div>
+      </div>
+      <p style="font-size:.85rem;color:var(--text2);line-height:1.75;"><strong style="color:var(--text);">Responsibilities</strong> are duties and obligations that individuals owe to themselves, their families, and to society. <strong style="color:var(--text);">Section 44</strong> of Zimbabwe's Constitution states that every person must respect and uphold the rights of others.<br><br>Your responsibilities exist at <strong style="color:var(--text);">school, in your community, and at home</strong>.</p>
+    </div>
+    <div class="card" style="margin-bottom:12px;overflow:hidden;">
+      <div style="padding:14px 16px;border-bottom:1px solid var(--border);font-weight:800;font-size:.88rem;display:flex;align-items:center;gap:8px;"><i class="fa fa-scale-balanced" style="color:var(--primary);"></i> Rights vs Responsibilities</div>
+      <div style="overflow-x:auto;">
+        <table style="width:100%;border-collapse:collapse;font-size:.82rem;">
+          <tr><th style="padding:10px 14px;text-align:left;background:rgba(79,70,229,.06);color:var(--primary);">⚖️ RIGHTS</th><th style="padding:10px 14px;text-align:left;background:rgba(239,68,68,.06);color:var(--danger);">🌟 RESPONSIBILITIES</th></tr>
+          <tr><td style="padding:9px 14px;border-top:1px solid var(--border);color:var(--text2);">Something you are <em>entitled</em> to</td><td style="padding:9px 14px;border-top:1px solid var(--border);color:var(--text2);">Something you are <em>expected</em> to do</td></tr>
+          <tr><td style="padding:9px 14px;border-top:1px solid var(--border);color:var(--text2);">Protected by Constitution</td><td style="padding:9px 14px;border-top:1px solid var(--border);color:var(--text2);">Required by law &amp; society</td></tr>
+          <tr><td style="padding:9px 14px;border-top:1px solid var(--border);color:var(--text2);">You can <strong style="color:var(--text);">CLAIM</strong> them</td><td style="padding:9px 14px;border-top:1px solid var(--border);color:var(--text2);">You must <strong style="color:var(--text);">FULFIL</strong> them</td></tr>
+          <tr><td style="padding:9px 14px;border-top:1px solid var(--border);color:var(--text2);">e.g. Right to Education</td><td style="padding:9px 14px;border-top:1px solid var(--border);color:var(--text2);">e.g. Attending school regularly</td></tr>
+        </table>
+      </div>
+    </div>
+    <div class="tip-box" style="margin:0 0 14px;">
+      <div class="tip-icon">🔄</div>
+      <div class="tip-txt"><strong>Remember:</strong> Rights and responsibilities are two sides of the same coin. No right is absolute — balancing it with your responsibility to others is what makes Zimbabwe a constitutional democracy.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════ RIGHTS ════════════════ -->
+<div id="s-rights" class="screen">
+  <div class="hero" style="padding:24px 20px 20px;">
+    <div class="hero-mesh"></div>
+    <div class="hero-content">
+      <div class="hero-tag">🇿🇼 CHAPTER 4 · 27 RIGHTS</div>
+      <h1 class="hero-h" style="font-size:1.8rem;">Your Constitutional Rights</h1>
+      <p class="hero-p" style="font-size:.82rem;">Tap each right to expand its full description. Based on Zimbabwe's Constitution 2013.</p>
+    </div>
+  </div>
+  <div class="search-bar-wrap">
+    <div class="search-wrap-rel">
+      <i class="fa fa-search search-icon"></i>
+      <input type="text" class="search-input" placeholder="Search rights..." oninput="searchRights(this.value)">
+    </div>
+  </div>
+  <div class="chips" id="rights-chips">
+    <button class="chip active" onclick="filterR('ALL',this)">All (27)</button>
+    <button class="chip" onclick="filterR('FUNDAMENTAL',this)">Fundamental</button>
+    <button class="chip" onclick="filterR('FREEDOM',this)">Freedoms</button>
+    <button class="chip" onclick="filterR('SOCIAL',this)">Social</button>
+    <button class="chip" onclick="filterR('JUSTICE',this)">Justice</button>
+    <button class="chip" onclick="filterR('SPECIAL',this)">Special</button>
+  </div>
+  <div style="padding:4px 16px 20px;" id="rights-container"></div>
+</div>
+
+<!-- ════════════════ RESPONSIBILITIES ════════════════ -->
+<div id="s-responsibilities" class="screen">
+  <div class="hero" style="padding:24px 20px 20px;background:linear-gradient(135deg,#B71C1C,#EF4444 60%,#F59E0B);">
+    <div class="hero-mesh"></div>
+    <div class="hero-content">
+      <div class="hero-tag" style="background:rgba(255,255,255,.15);">YOUR DUTIES</div>
+      <h1 class="hero-h" style="font-size:1.8rem;">Responsibilities</h1>
+      <p class="hero-p" style="font-size:.82rem;">Rights come with duties. Tap each to learn why it matters for Eastview teens.</p>
+    </div>
+  </div>
+  <div class="tab-bar">
+    <button class="tab-btn active" onclick="switchRTab('school',this)"><i class="fa fa-school"></i> School (10)</button>
+    <button class="tab-btn" onclick="switchRTab('community',this)"><i class="fa fa-people-group"></i> Community (5)</button>
+    <button class="tab-btn" onclick="switchRTab('home',this)"><i class="fa fa-house-chimney"></i> Home (5)</button>
+  </div>
+  <div id="resp-panel-school" class="tab-panel active"></div>
+  <div id="resp-panel-community" class="tab-panel"></div>
+  <div id="resp-panel-home" class="tab-panel"></div>
+</div>
+
+<!-- ════════════════ TUTORIALS ════════════════ -->
+<div id="s-tutorials" class="screen">
+  <div class="hero" style="padding:24px 20px 20px;background:linear-gradient(135deg,#4C1D95,#7C3AED 60%,#06B6D4);">
+    <div class="hero-mesh"></div>
+    <div class="hero-content">
+      <div class="hero-tag" style="background:rgba(255,255,255,.15);">🎬 REAL LIFE LEARNING</div>
+      <h1 class="hero-h" style="font-size:1.8rem;">Tutorials</h1>
+      <p class="hero-p" style="font-size:.82rem;">Real-life videos, images &amp; stories about rights in Zimbabwe.</p>
+    </div>
+  </div>
+  <div class="tab-bar">
+    <button class="tab-btn active" onclick="switchTTab('videos',this)"><i class="fa fa-play-circle"></i> Videos</button>
+    <button class="tab-btn" onclick="switchTTab('images',this)"><i class="fa fa-images"></i> Visual Guides</button>
+    <button class="tab-btn" onclick="switchTTab('stories',this)"><i class="fa fa-book-open"></i> Real Stories</button>
+  </div>
+  <div id="tut-panel-videos" class="tab-panel active" id="vid-list"></div>
+  <div id="tut-panel-images" class="tab-panel"></div>
+  <div id="tut-panel-stories" class="tab-panel"></div>
+</div>
+
+<!-- ════════════════ QUIZ ════════════════ -->
+<div id="s-quiz" class="screen">
+  <div class="hero" style="padding:24px 20px 20px;background:linear-gradient(135deg,#B45309,#F59E0B 60%,#EF4444);">
+    <div class="hero-mesh"></div>
+    <div class="hero-content">
+      <div class="hero-tag" style="background:rgba(255,255,255,.15);">🏆 TEST YOURSELF</div>
+      <h1 class="hero-h" style="font-size:1.8rem;">Quiz</h1>
+      <p class="hero-p" style="font-size:.82rem;">Challenge your knowledge of Zimbabwe's constitutional rights!</p>
+    </div>
+  </div>
+
+  <!-- Setup view -->
+  <div id="quiz-setup">
+    <div style="padding:16px 16px 10px;">
+      <div style="font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:var(--text2);margin-bottom:10px;">Select Number of Questions</div>
+    </div>
+    <div class="quiz-size-grid">
+      <div class="qsz active" onclick="setQSize(10,this)"><div class="qsz-n">10</div><div class="qsz-l">Quick</div></div>
+      <div class="qsz" onclick="setQSize(20,this)"><div class="qsz-n">20</div><div class="qsz-l">Standard</div></div>
+      <div class="qsz" onclick="setQSize(30,this)"><div class="qsz-n">30</div><div class="qsz-l">Advanced</div></div>
+      <div class="qsz" onclick="setQSize(40,this)"><div class="qsz-n">40</div><div class="qsz-l">Expert</div></div>
+    </div>
+    <div style="padding:14px 16px;">
+      <div class="card card-pad" style="text-align:center;">
+        <div style="font-size:2.8rem;margin-bottom:10px;">🧠</div>
+        <div style="font-weight:800;font-size:1.05rem;margin-bottom:6px;" id="quiz-preview-title">Quick Quiz — 10 Questions</div>
+        <div style="font-size:.82rem;color:var(--text2);margin-bottom:18px;line-height:1.6;" id="quiz-preview-desc">Test your basic knowledge of Zimbabwe's constitutional rights. Multiple choice format.</div>
+        <button class="btn-indigo" onclick="startQuiz()"><i class="fa fa-play"></i> Start Quiz · Earn <span id="quiz-xp-preview">50</span> XP</button>
+      </div>
+      <!-- Quiz history chart -->
+      <div class="sec-hdr" style="padding:16px 0 10px;"><div class="sec-hdr-left"><div class="sec-icon sec-icon-primary"><i class="fa fa-chart-line"></i></div><div><div class="sec-title">Your Progress</div><div class="sec-sub">Recent quiz scores</div></div></div></div>
+      <div class="card" style="overflow:hidden;">
+        <div class="chart-bar-wrap" id="quiz-history-chart">
+          <div style="font-size:.8rem;color:var(--text3);text-align:center;padding:10px 0;">No quiz history yet. Start your first quiz!</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Active quiz -->
+  <div id="quiz-active" style="display:none;padding:12px 16px;">
+    <div class="prog-row" style="padding:0 0 12px;">
+      <div class="prog-bar-wrap"><div class="prog-bar-fill" id="q-prog-fill" style="width:0%"></div></div>
+      <div class="prog-lbl" id="q-lbl">0/10</div>
+      <div class="live-score" id="q-live-score">0 ✓</div>
+    </div>
+    <div id="q-render"></div>
+  </div>
+
+  <!-- Result -->
+  <div id="quiz-result" style="display:none;padding:16px;">
+    <div class="result-card-hero">
+      <div class="result-trophy" id="r-trophy">🏆</div>
+      <div class="result-score" id="r-score">0/10</div>
+      <div class="result-msg" id="r-msg">Well done!</div>
+      <div class="result-sub" id="r-sub">Keep learning!</div>
+      <div style="margin-top:12px;" id="r-xp-earned"></div>
+    </div>
+    <div class="card" style="margin-bottom:12px;">
+      <div class="result-grid">
+        <div class="r-stat"><div class="r-stat-n" id="r-correct" style="color:var(--success);">0</div><div style="font-size:.65rem;color:var(--text2);font-weight:700;text-transform:uppercase;margin-top:3px;">Correct</div></div>
+        <div class="r-stat"><div class="r-stat-n" id="r-wrong" style="color:var(--danger);">0</div><div style="font-size:.65rem;color:var(--text2);font-weight:700;text-transform:uppercase;margin-top:3px;">Wrong</div></div>
+        <div class="r-stat"><div class="r-stat-n" id="r-pct" style="color:var(--accent);">0%</div><div style="font-size:.65rem;color:var(--text2);font-weight:700;text-transform:uppercase;margin-top:3px;">Score</div></div>
+      </div>
+    </div>
+    <div style="display:flex;gap:10px;">
+      <button class="btn-danger" onclick="retryQuiz()" style="flex:1;padding:12px;"><i class="fa fa-rotate-right"></i> Retry</button>
+      <button class="btn-success" onclick="shareResult()" style="flex:1;padding:12px;"><i class="fa fa-share-nodes"></i> Share</button>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════ NOTES ════════════════ -->
+<div id="s-notes" class="screen">
+  <div class="hero" style="padding:24px 20px 20px;background:linear-gradient(135deg,#0E7490,#06B6D4 60%,#4F46E5);">
+    <div class="hero-mesh"></div>
+    <div class="hero-content">
+      <div class="hero-tag" style="background:rgba(255,255,255,.15);">📝 STUDY MATERIALS</div>
+      <h1 class="hero-h" style="font-size:1.8rem;">Study Notes</h1>
+    </div>
+  </div>
+  <div class="tab-bar">
+    <button class="tab-btn active" onclick="switchNTab('rights-notes',this)">Rights</button>
+    <button class="tab-btn" onclick="switchNTab('resp-notes',this)">Responsibilities</button>
+    <button class="tab-btn" onclick="switchNTab('my-notes',this)">My Notes</button>
+    <button class="tab-btn" onclick="switchNTab('faq',this)">FAQ</button>
+  </div>
+  <div id="notes-panel-rights-notes" class="tab-panel active">
+    <div class="note-card">
+      <div class="note-card-hdr"><div class="note-dot" style="background:var(--primary);"></div><div class="note-hdr-t">Constitutional Basics</div></div>
+      <div class="note-card-body"><ul class="note-list">
+        <li>Rights are in <strong>Zimbabwe's Constitution (2013), Chapter 4</strong>.</li>
+        <li><strong>Section 48</strong>: Right to life — the State must protect it.</li>
+        <li><strong>Section 49</strong>: Right to personal liberty — no unlawful detention.</li>
+        <li><strong>Section 50</strong>: Rights of arrested persons — call parents &amp; lawyer within 48hrs.</li>
+        <li><strong>Section 51</strong>: Right to human dignity — inherent in every person.</li>
+        <li><strong>Section 52</strong>: Personal security — freedom from all forms of violence.</li>
+        <li><strong>Section 53</strong>: Freedom from torture — ABSOLUTE, cannot be limited.</li>
+        <li><strong>Section 54</strong>: Freedom from forced labour and slavery.</li>
+        <li><strong>Section 56</strong>: Equality and non-discrimination on ALL grounds.</li>
+        <li><strong>Section 57</strong>: Right to privacy — home, property, communications.</li>
+      </ul></div>
+    </div>
+    <div class="note-card">
+      <div class="note-card-hdr"><div class="note-dot" style="background:var(--success);"></div><div class="note-hdr-t">Freedoms</div></div>
+      <div class="note-card-body"><ul class="note-list">
+        <li><strong>Section 58</strong>: Freedom of assembly and association — join clubs, groups.</li>
+        <li><strong>Section 59</strong>: Freedom to demonstrate and petition.</li>
+        <li><strong>Section 60</strong>: Freedom of conscience, thought, religion, and belief.</li>
+        <li><strong>Section 61</strong>: Freedom of expression — speak, write, create art.</li>
+        <li><strong>Section 62</strong>: Freedom of the media.</li>
+        <li><strong>Section 63</strong>: Access to information, language, and culture.</li>
+        <li><strong>Section 64</strong>: Freedom of profession, trade, or occupation.</li>
+        <li><strong>Section 65</strong>: Labour rights — fair wages, safe conditions.</li>
+        <li><strong>Section 66</strong>: Freedom of movement and residence.</li>
+        <li><strong>Section 67</strong>: Political rights — vote at 18, SRC before that.</li>
+      </ul></div>
+    </div>
+    <div class="note-card">
+      <div class="note-card-hdr"><div class="note-dot" style="background:var(--accent);"></div><div class="note-hdr-t">Social &amp; Economic Rights</div></div>
+      <div class="note-card-body"><ul class="note-list">
+        <li><strong>Section 72</strong>: Right to agricultural land — food security.</li>
+        <li><strong>Section 73</strong>: Environmental rights — clean, healthy environment.</li>
+        <li><strong>Section 75</strong>: Right to education — free, state-funded basic education.</li>
+        <li><strong>Section 76</strong>: Right to health care — emergency care cannot be refused.</li>
+        <li><strong>Section 77</strong>: Right to food and water — safe, clean, and sufficient.</li>
+        <li><strong>Section 78</strong>: Marriage rights — no forced or child marriage.</li>
+        <li><strong>Section 80</strong>: Rights of women — equal rights, dignity.</li>
+        <li><strong>Section 81</strong>: Rights of school children — protection, nutrition, shelter.</li>
+        <li>Rights can only be limited by law under <strong>Section 86</strong> — if reasonable and justifiable.</li>
+      </ul></div>
+    </div>
+  </div>
+  <div id="notes-panel-resp-notes" class="tab-panel">
+    <div class="note-card">
+      <div class="note-card-hdr"><div class="note-dot" style="background:var(--danger);"></div><div class="note-hdr-t">School Responsibilities</div></div>
+      <div class="note-card-body"><ul class="note-list">
+        <li>Attending school is both a right (S.75) and a <strong>responsibility</strong>.</li>
+        <li>Respecting teachers upholds the school community's dignity (S.51).</li>
+        <li>Bullying violates victims' rights under S.51 (dignity) and S.52 (security).</li>
+        <li>Completing work honours the education the State provides.</li>
+        <li>Joining SRC gives you democratic practice before you turn 18.</li>
+        <li>Reporting problems prevents rights violations from escalating.</li>
+        <li>Section 44: All persons must respect and uphold rights of others.</li>
+      </ul></div>
+    </div>
+    <div class="note-card">
+      <div class="note-card-hdr"><div class="note-dot" style="background:var(--secondary);"></div><div class="note-hdr-t">Community &amp; Home</div></div>
+      <div class="note-card-body"><ul class="note-list">
+        <li>Section 73 gives you the right to a clean environment — your duty is to keep Eastview clean.</li>
+        <li>Saying NO to crime protects everyone's rights and your own future.</li>
+        <li>Respecting parents/guardians shows care for those responsible for your welfare.</li>
+        <li>Helping at home builds life skills and strengthens family bonds.</li>
+        <li>Participating in community meetings exercises your democratic rights.</li>
+        <li><strong>Ubuntu</strong> — "I am because we are" — is at the heart of Zimbabwean community life.</li>
+      </ul></div>
+    </div>
+  </div>
+  <div id="notes-panel-my-notes" class="tab-panel">
+    <div class="card" style="margin-bottom:12px;">
+      <div style="padding:13px 16px;border-bottom:1px solid var(--border);font-weight:800;font-size:.87rem;display:flex;align-items:center;gap:8px;"><i class="fa fa-pen" style="color:var(--primary);"></i> My Personal Notes</div>
+      <div style="padding:14px 16px;">
+        <textarea id="my-notes-txt" class="f-textarea" style="min-height:130px;" placeholder="Write your study notes here...&#10;&#10;e.g. Section 75 = Right to Education...&#10;e.g. My top 3 rights are..."></textarea>
+        <div style="display:flex;gap:8px;margin-top:10px;">
+          <button onclick="saveNotes()" style="flex:1;background:var(--primary);color:white;border:none;border-radius:var(--radius-sm);padding:11px;font-size:.85rem;font-weight:700;display:flex;align-items:center;justify-content:center;gap:7px;cursor:pointer;"><i class="fa fa-floppy-disk"></i> Save</button>
+          <button onclick="clearNotes()" style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-sm);padding:11px 16px;font-size:.85rem;font-weight:700;color:var(--text2);cursor:pointer;">Clear</button>
+          <button onclick="downloadNotes()" style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-sm);padding:11px 16px;font-size:.85rem;font-weight:700;color:var(--text2);cursor:pointer;" title="Download as text"><i class="fa fa-download"></i></button>
+        </div>
+        <div id="notes-saved-msg" style="display:none;margin-top:10px;background:rgba(16,185,129,.1);border:1px solid rgba(16,185,129,.2);border-radius:var(--radius-xs);padding:9px 14px;font-size:.8rem;font-weight:700;color:var(--success);">✅ Notes saved to your device!</div>
+      </div>
+    </div>
+    <div class="tip-box" style="margin:0 0 14px;">
+      <div class="tip-icon">📌</div>
+      <div class="tip-txt"><strong>Study Tip:</strong> Write each right in one sentence in your own words. This technique helps you remember them better for real life and school exams.</div>
+    </div>
+  </div>
+  <div id="notes-panel-faq" class="tab-panel">
+    <div style="font-weight:800;font-size:.88rem;margin-bottom:12px;color:var(--text);">Frequently Asked Questions</div>
+    <div id="faq-list"></div>
+  </div>
+</div>
+
+<!-- ════════════════ REGISTER ════════════════ -->
+<div id="s-register" class="screen">
+  <div class="hero" style="padding:24px 20px 20px;background:linear-gradient(135deg,#1565C0,#1976D2 60%,#06B6D4);">
+    <div class="hero-mesh"></div>
+    <div class="hero-content">
+      <div class="hero-tag" style="background:rgba(255,255,255,.15);">📋 JOIN THE COMMUNITY</div>
+      <h1 class="hero-h" style="font-size:1.8rem;">Register</h1>
+      <p class="hero-p" style="font-size:.82rem;">Join Eastview Rights Hub &amp; share your voice</p>
+    </div>
+  </div>
+  <div style="padding:16px;">
+    <div class="card card-pad">
+      <div class="f-section-title"><i class="fa fa-user" style="color:var(--primary);"></i> Personal Info <span style="font-size:.78rem;font-weight:400;color:var(--text3);">* = required</span></div>
+      <div class="f-group"><label class="f-lbl">Full Name *</label><input type="text" id="r-name" class="f-inp" placeholder="e.g. Chido Moyo"><div class="f-err" id="err-r-name">Please enter your name</div></div>
+      <div class="f-row">
+        <div class="f-group"><label class="f-lbl">Age *</label><input type="number" id="r-age" class="f-inp" placeholder="e.g. 15" min="13" max="19"><div class="f-err" id="err-r-age">Age 13–19</div></div>
+        <div class="f-group"><label class="f-lbl">Gender</label><select id="r-gender" class="f-select"><option value="">Select</option><option>Male</option><option>Female</option><option>Prefer not to say</option></select></div>
+      </div>
+      <div class="f-divider"></div>
+      <div class="f-section-title"><i class="fa fa-school" style="color:var(--success);"></i> School Info</div>
+      <div class="f-group"><label class="f-lbl">School Name *</label><input type="text" id="r-school" class="f-inp" placeholder="e.g. Eastview High School"><div class="f-err" id="err-r-school">Please enter school name</div></div>
+      <div class="f-row">
+        <div class="f-group"><label class="f-lbl">Grade/Form *</label><select id="r-grade" class="f-select"><option value="">Select</option><option>Form 1</option><option>Form 2</option><option>Form 3</option><option>Form 4</option><option>Form 5</option><option>Form 6 L</option><option>Form 6 U</option></select><div class="f-err" id="err-r-grade">Select grade</div></div>
+        <div class="f-group"><label class="f-lbl">Province</label><select id="r-province" class="f-select"><option value="">Select</option><option>Harare</option><option>Bulawayo</option><option>Manicaland</option><option>Mash. Central</option><option>Mash. East</option><option>Mash. West</option><option>Masvingo</option><option>Mat. North</option><option>Mat. South</option><option>Midlands</option></select></div>
+      </div>
+      <div class="f-group"><label class="f-lbl">Email (optional)</label><input type="email" id="r-email" class="f-inp" placeholder="e.g. chido@email.com"></div>
+      <div class="f-divider"></div>
+      <div class="f-section-title"><i class="fa fa-comment-dots" style="color:var(--accent);"></i> Your Views</div>
+      <div class="f-group"><label class="f-lbl">Most Important Right to You?</label><select id="r-right" class="f-select"><option value="">Select a right</option><option>Right to Education (S.75)</option><option>Right to Life (S.48)</option><option>Right to Dignity (S.51)</option><option>Freedom of Expression (S.61)</option><option>Right to Health Care (S.76)</option><option>Freedom from Discrimination (S.56)</option><option>Children's Rights (S.81)</option><option>Right to Food &amp; Water (S.77)</option></select></div>
+      <div class="f-group"><label class="f-lbl">Your Message or Question</label><textarea id="r-msg" class="f-textarea" placeholder="Ask about your rights, share your thoughts, or describe a challenge you've faced..."></textarea></div>
+      <div class="f-divider"></div>
+      <div class="f-section-title"><i class="fa fa-flag" style="color:var(--danger);"></i> Report a Rights Violation</div>
+      <div class="f-group"><label class="f-lbl">Violation Type</label><select id="r-viol" class="f-select"><option value="">Select type (optional)</option><option>Denied education</option><option>Bullying / assault</option><option>Child labour</option><option>Discrimination</option><option>Denial of health care</option><option>Other</option></select></div>
+      <div class="f-group"><label class="f-lbl">Describe what happened (optional)</label><textarea id="r-viol-desc" class="f-textarea" style="min-height:70px;" placeholder="What happened? Where? When?"></textarea></div>
+      <div class="f-divider"></div>
+      <div class="f-section-title"><i class="fa fa-star" style="color:var(--accent);"></i> Rate this App</div>
+      <div style="display:flex;gap:6px;margin-bottom:14px;" id="star-row">
+        <button class="star-b" onclick="setStar(1)" style="font-size:1.8rem;background:none;border:none;cursor:pointer;color:#D1D5DB;transition:color .2s;">★</button>
+        <button class="star-b" onclick="setStar(2)" style="font-size:1.8rem;background:none;border:none;cursor:pointer;color:#D1D5DB;transition:color .2s;">★</button>
+        <button class="star-b" onclick="setStar(3)" style="font-size:1.8rem;background:none;border:none;cursor:pointer;color:#D1D5DB;transition:color .2s;">★</button>
+        <button class="star-b" onclick="setStar(4)" style="font-size:1.8rem;background:none;border:none;cursor:pointer;color:#D1D5DB;transition:color .2s;">★</button>
+        <button class="star-b" onclick="setStar(5)" style="font-size:1.8rem;background:none;border:none;cursor:pointer;color:#D1D5DB;transition:color .2s;">★</button>
+      </div>
+      <div class="f-group"><label class="f-lbl">Feedback</label><textarea id="r-feedback" class="f-textarea" style="min-height:70px;" placeholder="What did you learn? What can be improved?"></textarea></div>
+      <button class="btn-indigo" onclick="submitReg()" style="margin-top:4px;"><i class="fa fa-paper-plane"></i> Submit Registration</button>
+      <div id="reg-success" style="display:none;margin-top:12px;background:rgba(16,185,129,.1);border:1px solid rgba(16,185,129,.2);border-radius:var(--radius-sm);padding:14px 16px;">
+        <div style="font-weight:800;font-size:.9rem;color:var(--success);">🎉 Registration Successful!</div>
+        <div style="font-size:.8rem;color:var(--text2);margin-top:4px;">Welcome to Eastview Rights Hub. Your voice matters!</div>
+      </div>
+    </div>
+    <div style="height:16px;"></div>
+  </div>
+</div>
+
+<!-- ════════════════ PROFILE ════════════════ -->
+<div id="s-profile" class="screen">
+  <div class="profile-hero">
+    <div class="profile-avatar">👤</div>
+    <div class="profile-name" id="profile-name">Eastview Teen</div>
+    <div class="profile-role">Level <span id="profile-level">1</span> · <span id="profile-role-txt">Beginner</span></div>
+    <div class="profile-xp-row">
+      <div class="profile-xp-label">XP:</div>
+      <div style="flex:1;"><div class="xp-bar-wrap" style="margin:0;"><div class="xp-bar-fill" id="profile-xp-bar" style="width:0%"></div></div></div>
+      <div style="font-size:.72rem;opacity:.8;"><span id="profile-xp">0</span>/200</div>
+    </div>
+    <div style="display:flex;gap:12px;margin-top:12px;justify-content:center;">
+      <div class="xp-chip"><i class="fa fa-bolt"></i> <span id="p-xp-chip">0</span> XP</div>
+      <div class="streak-chip">🔥 <span id="p-streak-chip">0</span> day streak</div>
+    </div>
+  </div>
+  <div style="padding:16px;">
+    <!-- Badges -->
+    <div class="sec-hdr" style="padding:0 0 10px;"><div class="sec-hdr-left"><div class="sec-icon sec-icon-amber"><i class="fa fa-medal"></i></div><div><div class="sec-title">Badges</div><div class="sec-sub">Earn by using the app</div></div></div></div>
+    <div class="card card-pad" style="margin-bottom:14px;">
+      <div style="display:flex;gap:16px;flex-wrap:wrap;">
+        <div style="text-align:center;"><div class="badge-earned" id="pb-learner">🎓</div><div style="font-size:.62rem;margin-top:5px;font-weight:700;color:var(--text2);">Learner</div></div>
+        <div style="text-align:center;"><div class="badge-earned locked" id="pb-scholar">📚</div><div style="font-size:.62rem;margin-top:5px;font-weight:700;color:var(--text3);">Scholar</div></div>
+        <div style="text-align:center;"><div class="badge-earned locked" id="pb-quiz">🏆</div><div style="font-size:.62rem;margin-top:5px;font-weight:700;color:var(--text3);">Quiz Hero</div></div>
+        <div style="text-align:center;"><div class="badge-earned locked" id="pb-streak">🔥</div><div style="font-size:.62rem;margin-top:5px;font-weight:700;color:var(--text3);">Streak</div></div>
+        <div style="text-align:center;"><div class="badge-earned locked" id="pb-champ">⚖️</div><div style="font-size:.62rem;margin-top:5px;font-weight:700;color:var(--text3);">Champion</div></div>
+        <div style="text-align:center;"><div class="badge-earned locked" id="pb-explorer">🔭</div><div style="font-size:.62rem;margin-top:5px;font-weight:700;color:var(--text3);">Explorer</div></div>
+      </div>
+    </div>
+    <!-- Certificate -->
+    <div class="sec-hdr" style="padding:0 0 10px;"><div class="sec-hdr-left"><div class="sec-icon sec-icon-primary"><i class="fa fa-certificate"></i></div><div><div class="sec-title">Certificate</div><div class="sec-sub">Complete all modules to unlock</div></div></div></div>
+    <div class="card card-pad" id="cert-area" style="margin-bottom:14px;">
+      <div style="text-align:center;padding:10px 0;">
+        <div style="font-size:2rem;margin-bottom:8px;">📜</div>
+        <div style="font-size:.85rem;color:var(--text2);">Complete <strong>all 27 rights</strong> and score <strong>80%+</strong> on any quiz to unlock your certificate!</div>
+        <div style="margin-top:12px;height:8px;background:var(--surface);border-radius:4px;overflow:hidden;"><div id="cert-prog" class="xp-bar-fill" style="width:5%;"></div></div>
+        <div style="font-size:.72rem;color:var(--text3);margin-top:6px;"><span id="cert-pct">5</span>% complete</div>
+      </div>
+    </div>
+    <button class="btn-indigo" onclick="doLogout()" style="background:var(--surface);color:var(--text2);border:1px solid var(--border);box-shadow:none;margin-bottom:6px;"><i class="fa fa-right-from-bracket"></i> Sign Out</button>
+  </div>
+</div>
+
+<!-- ════════════════ EMERGENCY ════════════════ -->
+<div id="s-emergency" class="screen">
+  <div class="hero" style="padding:24px 20px 20px;background:linear-gradient(135deg,#7F1D1D,#DC2626);">
+    <div class="hero-mesh"></div>
+    <div class="hero-content">
+      <div class="hero-tag" style="background:rgba(255,255,255,.15);">🆘 EMERGENCY CONTACTS</div>
+      <h1 class="hero-h" style="font-size:1.8rem;">Get Help Now</h1>
+      <p class="hero-p" style="font-size:.82rem;">One tap to call. Your safety matters. 🇿🇼</p>
+    </div>
+  </div>
+  <div style="padding:16px;">
+    <a href="tel:116" style="display:block;">
+      <button class="sos-btn"><i class="fa fa-phone-volume"></i> 📞 Childline Zimbabwe — 116 (FREE)</button>
+    </a>
+    <div id="contact-list"></div>
+  </div>
+</div>
+
+<!-- ════════════════ GLOSSARY ════════════════ -->
+<div id="s-glossary" class="screen">
+  <div class="hero" style="padding:24px 20px 20px;background:linear-gradient(135deg,#065F46,#10B981);">
+    <div class="hero-mesh"></div>
+    <div class="hero-content">
+      <div class="hero-tag" style="background:rgba(255,255,255,.15);">📚 LEGAL TERMS</div>
+      <h1 class="hero-h" style="font-size:1.8rem;">Glossary</h1>
+      <p class="hero-p" style="font-size:.82rem;">Legal words explained simply for Eastview teens.</p>
+    </div>
+  </div>
+  <div class="search-bar-wrap">
+    <div class="search-wrap-rel">
+      <i class="fa fa-search search-icon"></i>
+      <input type="text" class="search-input" placeholder="Search terms..." oninput="searchGloss(this.value)">
+    </div>
+  </div>
+  <div style="padding:14px 16px;" id="gloss-list"></div>
+</div>
+
+<!-- ════════════════ SETTINGS ════════════════ -->
+<div id="s-settings" class="screen">
+  <div class="hero" style="padding:24px 20px 20px;">
+    <div class="hero-mesh"></div>
+    <div class="hero-content">
+      <div class="hero-tag">⚙️ SETTINGS</div>
+      <h1 class="hero-h" style="font-size:1.8rem;">Settings</h1>
+    </div>
+  </div>
+  <div style="padding:16px;">
+    <div style="font-size:.7rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:var(--text3);margin-bottom:10px;">Appearance</div>
+    <div class="setting-row">
+      <div class="setting-left">
+        <div class="setting-icon" style="background:rgba(79,70,229,.1);color:var(--primary);">🌙</div>
+        <div><div class="setting-title">Dark Mode</div><div class="setting-sub">Toggle dark theme</div></div>
+      </div>
+      <div class="toggle" id="dark-toggle" onclick="toggleDark()"><div class="toggle-thumb"></div></div>
+    </div>
+    <div class="setting-row">
+      <div class="setting-left">
+        <div class="setting-icon" style="background:rgba(245,158,11,.1);color:var(--accent);">🔠</div>
+        <div><div class="setting-title">Font Size</div><div class="setting-sub">Adjust text size</div></div>
+      </div>
+      <div class="font-controls">
+        <button class="font-btn" onclick="setFont('sm')">S</button>
+        <button class="font-btn" onclick="setFont('md')">M</button>
+        <button class="font-btn" onclick="setFont('lg')">L</button>
+      </div>
+    </div>
+    <div class="setting-row">
+      <div class="setting-left">
+        <div class="setting-icon" style="background:rgba(239,68,68,.1);color:var(--danger);">⚡</div>
+        <div><div class="setting-title">High Contrast</div><div class="setting-sub">For visual accessibility</div></div>
+      </div>
+      <div class="toggle" id="hc-toggle" onclick="toggleHC()"><div class="toggle-thumb"></div></div>
+    </div>
+    <div style="font-size:.7rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:var(--text3);margin:16px 0 10px;">Language</div>
+    <div class="setting-row">
+      <div class="setting-left">
+        <div class="setting-icon" style="background:rgba(6,182,212,.1);color:var(--secondary);">🌍</div>
+        <div><div class="setting-title">Language</div><div class="setting-sub">Switch display language</div></div>
+      </div>
+      <select class="f-select" style="width:120px;padding:8px 12px;font-size:.82rem;" onchange="setLang(this.value)">
+        <option value="en">🇿🇼 English</option>
+        <option value="sn">🇿🇼 Shona</option>
+        <option value="nd">🇿🇼 Ndebele</option>
+      </select>
+    </div>
+    <div style="font-size:.7rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:var(--text3);margin:16px 0 10px;">Data</div>
+    <div class="setting-row" style="cursor:pointer;" onclick="clearAppData()">
+      <div class="setting-left">
+        <div class="setting-icon" style="background:rgba(239,68,68,.1);color:var(--danger);">🗑️</div>
+        <div><div class="setting-title">Clear App Data</div><div class="setting-sub">Reset XP, notes &amp; progress</div></div>
+      </div>
+      <i class="fa fa-chevron-right" style="color:var(--text3);font-size:.8rem;"></i>
+    </div>
+    <div class="card card-pad" style="margin-top:14px;text-align:center;">
+      <div style="font-size:.75rem;color:var(--text3);margin-bottom:4px;">Eastview Rights Hub</div>
+      <div style="font-size:.7rem;color:var(--text3);">v1.0.0 · Eastview Edition · Zimbabwe 🇿🇼</div>
+      <div style="font-size:.68rem;color:var(--text3);margin-top:6px;">Based on Zimbabwe's Constitution 2013</div>
+    </div>
+    <div style="height:10px;"></div>
+  </div>
+</div>
+
+</div><!-- /main-scroll -->
+
+<!-- BOTTOM NAV -->
+<div class="bottom-nav">
+  <button class="bn active" id="bn-home" onclick="goScreen('home')"><i class="fa fa-house"></i><span>HOME</span></button>
+  <button class="bn" id="bn-rights" onclick="goScreen('rights')"><i class="fa fa-shield-halved"></i><span>RIGHTS</span></button>
+  <button class="bn" id="bn-quiz" onclick="goScreen('quiz')"><i class="fa fa-trophy"></i><span>QUIZ</span></button>
+  <button class="bn" id="bn-tutorials" onclick="goScreen('tutorials')"><i class="fa fa-play-circle"></i><span>LEARN</span></button>
+  <button class="bn" id="bn-register" onclick="goScreen('register')"><i class="fa fa-user-plus"></i><span>JOIN</span></button>
+</div>
+
+</div><!-- /app -->
+
+<!-- MODAL -->
+<div class="modal-bg" id="modal-bg" onclick="closeModal()">
+  <div class="modal-sheet" onclick="event.stopPropagation()">
+    <div class="modal-handle"></div>
+    <div class="modal-hdr">
+      <div class="modal-title-t" id="modal-t">Detail</div>
+      <button class="modal-close" onclick="closeModal()"><i class="fa fa-xmark"></i></button>
+    </div>
+    <div class="modal-body" id="modal-b"></div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+<script>
+// ═══════════════════════════════════════════════
+// DATA
+// ═══════════════════════════════════════════════
+const RIGHTS = [
+  {num:1,icon:'❤️',bg:'rgba(239,68,68,.1)',title:'Right to Life',sect:'Section 48',badge:'FUNDAMENTAL',badgeCls:'tag-red',cat:'FUNDAMENTAL',
+    def:'Every person has the right to life. The State must protect the right to life of every person by law.',
+    desc:'No person may be arbitrarily deprived of their life. The State must create safe environments and legislation protecting every citizen\'s life.',
+    expl:'No one — bully, gang, or authority — can threaten your life. The government must protect all Eastview teenagers by ensuring safety in schools, communities, and public spaces.'},
+  {num:2,icon:'🔓',bg:'rgba(245,158,11,.1)',title:'Rights of Arrested & Detained Persons',sect:'Section 50',badge:'JUSTICE',badgeCls:'tag-amber',cat:'JUSTICE',
+    def:'Every person who is arrested must be told why, allowed to contact a lawyer and family, and must be charged or released within 48 hours.',
+    desc:'Detained persons must not be held in conditions violating their dignity. Juvenile offenders must be treated separately from adult offenders.',
+    expl:'If police arrest you in Eastview: they must tell you why, let you call your parents and a lawyer, and cannot keep you more than 48 hours without charging you. You cannot be mistreated in custody.'},
+  {num:3,icon:'🗽',bg:'rgba(79,70,229,.1)',title:'Right to Personal Liberty',sect:'Section 49',badge:'FUNDAMENTAL',badgeCls:'tag-primary',cat:'FUNDAMENTAL',
+    def:'Every person has the right to personal liberty, including the right not to be detained without trial.',
+    desc:'No person shall be unlawfully detained or imprisoned. Detention must follow lawful procedures and any unlawful detention can be challenged in court.',
+    expl:'You cannot be held against your will without a lawful reason. If someone — including authorities — unlawfully confines you, you have the legal right to challenge your detention in court immediately.'},
+  {num:4,icon:'🛡️',bg:'rgba(16,185,129,.1)',title:'Right to Personal Security',sect:'Section 52',badge:'PROTECTION',badgeCls:'tag-green',cat:'PROTECTION',
+    def:'Every person has the right to personal security, including freedom from all forms of violence from public or private sources.',
+    desc:'This includes protection from physical assault, psychological intimidation, and sexual violence. The State must protect citizens from violence.',
+    expl:'You have the right to be safe at school, home, and in Eastview. No teacher, parent, peer, or stranger may harm you without legal consequences. Report violence to school authorities or the Zimbabwe Republic Police.'},
+  {num:5,icon:'💛',bg:'rgba(245,158,11,.1)',title:'Right to Human Dignity',sect:'Section 51',badge:'FUNDAMENTAL',badgeCls:'tag-amber',cat:'FUNDAMENTAL',
+    def:'Every person has inherent dignity in their private and public life, and the right to have that dignity respected and protected.',
+    desc:'Dignity is inherent to every human being and cannot be removed. Degrading treatment, public humiliation, and abusive punishment all violate this right.',
+    expl:'Your teachers, parents, police, and peers must treat you with respect. Corporal punishment that humiliates you, name-calling based on identity, or public shaming violates your constitutional right to dignity.'},
+  {num:6,icon:'⛓️',bg:'rgba(239,68,68,.1)',title:'Freedom from Forced/Compulsory Labour',sect:'Section 54',badge:'ABSOLUTE',badgeCls:'tag-red',cat:'PROTECTION',
+    def:'No person may be made to perform forced labour. This is an absolute right that cannot be limited under any circumstances.',
+    desc:'Forced labour includes any work extracted under threat, coercion, or punishment. Child labour, domestic servitude, and exploitation of teenagers are prohibited.',
+    expl:'If you are being forced to work against your will instead of attending school, that violates your constitutional rights. Report child labour to the Ministry of Public Service, Labour and Social Welfare or call Childline 116.'},
+  {num:7,icon:'🚫',bg:'rgba(239,68,68,.1)',title:'Freedom from Slavery or Servitude',sect:'Section 54',badge:'ABSOLUTE',badgeCls:'tag-red',cat:'PROTECTION',
+    def:'No person may be subjected to slavery or servitude. Human trafficking and all forms of modern slavery are absolutely prohibited.',
+    desc:'Slavery includes not only historic forms but also modern forms: human trafficking, bonded labour, and forced domestic work. The prohibition is absolute.',
+    expl:'No one can own, traffic, or exploit you as if you were property. Human trafficking — a serious crime in Zimbabwe — violates this right. Report trafficking to ZRP or call Childline 116 immediately.'},
+  {num:8,icon:'⚖️',bg:'rgba(79,70,229,.1)',title:'Equality & Non-Discrimination',sect:'Section 56',badge:'FUNDAMENTAL',badgeCls:'tag-primary',cat:'FUNDAMENTAL',
+    def:'Every person has the right to equal treatment and equal protection under the law. No one may be discriminated against based on nationality, race, gender, age, disability, religion, or social status.',
+    desc:'Both direct and indirect discrimination are prohibited. The State must ensure equality of opportunity, especially for women, children, and persons with disabilities.',
+    expl:'In Eastview schools, clubs, or public spaces, you cannot be treated worse because of who you are. Girls have equal rights to education. Tribal bullying and racial harassment violate this right.'},
+  {num:9,icon:'🔒',bg:'rgba(79,70,229,.1)',title:'Right to Privacy',sect:'Section 57',badge:'PROTECTION',badgeCls:'tag-primary',cat:'PROTECTION',
+    def:'Every person has the right to privacy, including the right not to have their home entered, their property searched, or their communications monitored without lawful authority.',
+    desc:'Privacy extends to personal digital communications — phone calls, messages, emails. Schools must have reasonable grounds before searching students.',
+    expl:'Your diary, phone, and private messages cannot be searched without your consent or a court order. Unauthorized surveillance of your personal accounts is also unconstitutional.'},
+  {num:10,icon:'🤝',bg:'rgba(16,185,129,.1)',title:'Freedom of Assembly & Association',sect:'Section 58',badge:'FREEDOM',badgeCls:'tag-green',cat:'FREEDOM',
+    def:'Every person has the right to freedom of peaceful assembly and association, including the right to form and join associations such as clubs, unions, and organisations.',
+    desc:'Peaceful assemblies cannot be prohibited. Authorities must give reasonable justification to restrict gatherings. The right includes youth organisations and student bodies.',
+    expl:'You can form or join school clubs, youth groups, sports teams, and community organisations in Eastview. Police cannot disperse peaceful student gatherings without lawful justification.'},
+  {num:11,icon:'✊',bg:'rgba(245,158,11,.1)',title:'Freedom to Demonstrate & Petition',sect:'Section 59',badge:'FREEDOM',badgeCls:'tag-amber',cat:'FREEDOM',
+    def:'Every person has the right to demonstrate and to present petitions to public authorities. These demonstrations must be conducted peacefully.',
+    desc:'Citizens may peacefully protest government decisions, school policies, or community issues. Petitions to authorities are a constitutional right.',
+    expl:'As an Eastview teen, you can participate in peaceful demonstrations about school conditions, community issues, or rights violations. Violence is not protected — peaceful protest is.'},
+  {num:12,icon:'🙏',bg:'rgba(139,92,246,.1)',title:'Freedom of Conscience',sect:'Section 60',badge:'FREEDOM',badgeCls:'tag-purple',cat:'FREEDOM',
+    def:'Every person has the right to freedom of conscience, including freedom of thought, opinion, religion or belief, and the freedom to practise, propagate and give expression to their conscience.',
+    desc:'Schools cannot require participation in a religion different from a student\'s own. No person can be compelled to take an oath contrary to their beliefs.',
+    expl:'You choose your own religion or belief. Schools in Eastview cannot force you to participate in rituals of another faith. You may practise your religion freely as long as it does not violate others\' rights.'},
+  {num:13,icon:'🗣️',bg:'rgba(79,70,229,.1)',title:'Freedom of Expression',sect:'Section 61',badge:'FREEDOM',badgeCls:'tag-primary',cat:'FREEDOM',
+    def:'Every person has the right to freedom of expression, which includes freedom to seek, receive and communicate ideas and information freely.',
+    desc:'Expression covers speech, writing, art, music, and drama. Limitations apply to hate speech, incitement to violence, and deliberate falsehoods.',
+    expl:'You can express opinions in debates, school newspapers, social media, and creative work. This does not include hate speech targeting people based on race, religion, or gender.'},
+  {num:14,icon:'📰',bg:'rgba(6,182,212,.1)',title:'Freedom of the Media',sect:'Section 62',badge:'FREEDOM',badgeCls:'tag-cyan',cat:'FREEDOM',
+    def:'Every person has the right to freedom of the media, including freedom of the press and broadcasting, and freedom to establish freely circulating publications.',
+    desc:'The State may not interfere with or censor media except to the extent permitted by law. School newspapers are protected as a form of media.',
+    expl:'Your school newspaper cannot be arbitrarily shut down by authorities. Blogging and online publication about your school or community is constitutionally protected expression.'},
+  {num:15,icon:'📡',bg:'rgba(16,185,129,.1)',title:'Access to Information, Language & Culture',sect:'Section 63',badge:'FREEDOM',badgeCls:'tag-green',cat:'FREEDOM',
+    def:'Every Zimbabwean citizen has the right to access information held by the State, to use the language of their choice, and to participate in the cultural life of their community.',
+    desc:'Zimbabwe recognises 16 official languages. Cultural practices compatible with the Constitution are protected. State information must be accessible to all citizens.',
+    expl:'You can speak Shona, Ndebele, Tonga, or any of Zimbabwe\'s 16 languages. You can access government records about your school or community. Cultural ceremonies and practices that respect others\' rights are protected.'},
+  {num:16,icon:'💼',bg:'rgba(245,158,11,.1)',title:'Freedom of Profession, Trade or Occupation',sect:'Section 64',badge:'SOCIAL',badgeCls:'tag-amber',cat:'SOCIAL',
+    def:'Every person has the right to choose and practise a profession, trade, or occupation. The State may only regulate this through law.',
+    desc:'No person may be barred from a profession based on tribal affiliation, gender, or race. Qualifications and competency are the only lawful restrictions.',
+    expl:'As an Eastview teen planning your career, no one can stop you from pursuing medicine, law, engineering, or any other profession based on your tribe, gender, or religion — only qualifications matter.'},
+  {num:17,icon:'👷',bg:'rgba(239,68,68,.1)',title:'Labour Rights',sect:'Section 65',badge:'SOCIAL',badgeCls:'tag-red',cat:'SOCIAL',
+    def:'Every person has the right to fair and safe labour practices, to a fair wage, and to participate in collective job action. Workers may form and join trade unions.',
+    desc:'Employers must pay fair wages, provide safe conditions, and respect child labour age restrictions. Workers have the right to strike and collectively bargain.',
+    expl:'For teens working part-time in Eastview, your employer must pay you fairly and provide safe conditions. Under-16s have special protection from hazardous work. Report exploitation to the Labour Ministry.'},
+  {num:18,icon:'🧳',bg:'rgba(79,70,229,.1)',title:'Freedom of Movement & Residence',sect:'Section 66',badge:'FREEDOM',badgeCls:'tag-primary',cat:'FREEDOM',
+    def:'Every Zimbabwean citizen has the right to move freely within Zimbabwe, reside anywhere in Zimbabwe, and leave Zimbabwe.',
+    desc:'Freedom of movement cannot be arbitrarily restricted. Checkpoints and curfews must have lawful justification. Citizens can return to Zimbabwe freely.',
+    expl:'You cannot be arbitrarily confined to Eastview or prevented from travelling within Zimbabwe. Police at roadblocks cannot detain you without specific lawful grounds.'},
+  {num:19,icon:'🗳️',bg:'rgba(16,185,129,.1)',title:'Political Rights',sect:'Section 67',badge:'JUSTICE',badgeCls:'tag-green',cat:'JUSTICE',
+    def:'Every Zimbabwean citizen has the right to free, fair, and regular elections, to vote, and to stand for election to public office.',
+    desc:'Citizens 18 and older can vote in national elections. Younger teens can participate in school councils, youth parliaments, and civic organisations.',
+    expl:'When you turn 18, register to vote — it\'s your right and responsibility. Before then, join your school\'s SRC or Zimbabwe Youth Councils to practice democratic participation.'},
+  {num:20,icon:'🌾',bg:'rgba(245,158,11,.1)',title:'Right to Agricultural Land',sect:'Section 72',badge:'SOCIAL',badgeCls:'tag-amber',cat:'SOCIAL',
+    def:'All Zimbabweans have the right to use agricultural land for food security and economic empowerment, as implemented under land reform programs.',
+    desc:'The State has a responsibility to ensure equitable access to agricultural resources and to support subsistence farming as part of food security.',
+    expl:'Zimbabwe\'s land policies aim to ensure that all families, including those in Eastview, can access land for food production. This supports your constitutional right to food (S.77).'},
+  {num:21,icon:'🌿',bg:'rgba(16,185,129,.1)',title:'Environmental Rights',sect:'Section 73',badge:'SOCIAL',badgeCls:'tag-green',cat:'SOCIAL',
+    def:'Every person has the right to an environment that is not harmful to their health or well-being, and the right to have the environment protected for present and future generations.',
+    desc:'The State must protect the environment through legislation. Pollution, illegal dumping, and environmental degradation affecting health are unconstitutional.',
+    expl:'Industrial pollution and illegal dumping in Eastview violate your rights. Report environmental hazards to the Environmental Management Agency (EMA). Clean-up drives are not just civic — they protect your constitutional rights.'},
+  {num:22,icon:'🏥',bg:'rgba(239,68,68,.1)',title:'Right to Health',sect:'Section 76',badge:'SOCIAL',badgeCls:'tag-red',cat:'SOCIAL',
+    def:'Every citizen and permanent resident has the right to access basic health-care services including reproductive health care. No emergency treatment may be refused.',
+    desc:'The State must progressively make health care available and accessible. Children have special rights to health care including immunisation and nutrition.',
+    expl:'No clinic in Eastview can turn you away in an emergency. You have the right to health information relevant to your age and health status. Reproductive health rights are especially protected for teenage girls.'},
+  {num:23,icon:'🎓',bg:'rgba(79,70,229,.1)',title:'Right to Education',sect:'Section 75',badge:'SOCIAL',badgeCls:'tag-primary',cat:'SOCIAL',
+    def:'Every citizen and permanent resident has the right to a basic state-funded education, including the right to access further education which the State must progressively make available.',
+    desc:'Education must be accessible to all, non-discriminatory, and include special needs learners. Schools must not charge fees that prevent access to basic education.',
+    expl:'You have the right to attend school in Eastview without discrimination. If you are denied enrollment unfairly, contact the Ministry of Primary and Secondary Education or the ZHRC.'},
+  {num:24,icon:'💍',bg:'rgba(245,158,11,.1)',title:'Marriage Rights',sect:'Section 78',badge:'SPECIAL',badgeCls:'tag-amber',cat:'SPECIAL',
+    def:'Every person who has attained the age of 18 has the right to found a family. No person may be compelled to enter into a marriage against their will.',
+    desc:'Child marriages — before age 18 — are prohibited. Both parties must give full and free consent. Girls have special protection from forced and early marriage.',
+    expl:'As an Eastview teen, you cannot legally be married before age 18. No parent, guardian, or custom can force you into marriage. Section 78 protects you from child marriage — report violations to Childline 116.'},
+  {num:25,icon:'💧',bg:'rgba(6,182,212,.1)',title:'Right to Food & Water',sect:'Section 77',badge:'SOCIAL',badgeCls:'tag-cyan',cat:'SOCIAL',
+    def:'Every person has the right to safe, clean and potable water and to food in sufficient quantity and of suitable quality.',
+    desc:'The State must progressively ensure food security and water access. Schools must provide access to safe water. Malnourishment caused by State neglect is unconstitutional.',
+    expl:'You have the right to access clean water and sufficient food in Eastview. If your school or community lacks safe water access, this is a constitutional issue that can be raised with local authorities.'},
+  {num:26,icon:'🎖️',bg:'rgba(139,92,246,.1)',title:'Rights of Veterans of the Liberation Struggle',sect:'Section 84',badge:'SPECIAL',badgeCls:'tag-purple',cat:'SPECIAL',
+    def:'Veterans of the liberation struggle of Zimbabwe have the right to recognition, benefits, and support from the State for their contribution to national independence.',
+    desc:'The State must provide pensions, health care, and recognition to liberation war veterans and their families as a matter of constitutional obligation.',
+    expl:'Many elderly residents of Eastview may be liberation war veterans. Understanding this right helps you respect their contributions and understand Zimbabwe\'s history and constitutional commitments.'},
+  {num:27,icon:'🧒',bg:'rgba(79,70,229,.1)',title:'Rights of School Children',sect:'Section 81',badge:'SPECIAL',badgeCls:'tag-primary',cat:'SPECIAL',
+    def:'Every child — any person under 18 — has the right to equal treatment, a family name and care, nutrition, shelter and clothing from their parents or guardians.',
+    desc:'Children must be protected from maltreatment, neglect, abuse, exploitation, child labour, child marriage, and use in armed conflict.',
+    expl:'THIS IS THE MOST IMPORTANT RIGHT FOR EASTVIEW TEENS. You cannot be subjected to child labour, forced into marriage, sexually exploited, or used in conflict. The State, parents, and community must always act in your best interests. Report violations to Childline 116.'}
+];
+
+const SCHOOL_RESP = [
+  {icon:'🕐',title:'Attend School Regularly',col:'rgba(239,68,68,.08)',dot:'var(--danger)',
+    desc:'Regular attendance is both a constitutional duty and a moral obligation. Section 75 gives you the right to education — honour it by attending consistently. Missing school builds gaps in knowledge that are hard to recover.'},
+  {icon:'👩‍🏫',title:'Respect Teachers & Staff',col:'rgba(239,68,68,.06)',dot:'var(--danger)',
+    desc:'Teachers are your mentors and authority figures. Respecting them means listening attentively, following school rules, and addressing staff politely. Respectful relationships create a positive environment for all.'},
+  {icon:'📚',title:'Complete All Assignments',col:'rgba(239,68,68,.06)',dot:'var(--danger)',
+    desc:'Homework demonstrates self-discipline and respect for your teachers\' efforts. Completing work on time is how you honour the education the State provides under Section 75.'},
+  {icon:'🤝',title:'Avoid Bullying',col:'rgba(239,68,68,.06)',dot:'var(--danger)',
+    desc:'Bullying — physical, verbal, or cyber — violates classmates\' rights to dignity (S.51) and security (S.52). Creating an inclusive environment is your constitutional duty under Section 44.'},
+  {icon:'🏫',title:'Care for School Property',col:'rgba(239,68,68,.06)',dot:'var(--danger)',
+    desc:'School furniture, textbooks, and labs are shared resources. Caring for them ensures other students can benefit. Vandalism may result in legal consequences and denies education to others.'},
+  {icon:'👔',title:'Wear Uniform Correctly',col:'rgba(239,68,68,.06)',dot:'var(--danger)',
+    desc:'Uniform creates equality and removes social pressure around clothing. It shows respect for your school\'s culture and creates a focused learning environment.'},
+  {icon:'🏆',title:'Participate in School Activities',col:'rgba(239,68,68,.06)',dot:'var(--danger)',
+    desc:'Sports, debate clubs, drama, and the Student Representative Council (SRC) develop leadership, teamwork, and democratic participation skills for Zimbabwe\'s future.'},
+  {icon:'💪',title:'Study Hard & Strive for Excellence',col:'rgba(239,68,68,.06)',dot:'var(--danger)',
+    desc:'Your responsibility to yourself and Zimbabwe is to apply maximum effort. The country needs skilled young people. Your academic success contributes to national development.'},
+  {icon:'🚨',title:'Report Problems to Authorities',col:'rgba(239,68,68,.06)',dot:'var(--danger)',
+    desc:'Witnessing abuse, bullying, or rights violations and staying silent makes you complicit. Reporting to teachers, the principal, or the ZHRC is an act of civic courage and constitutional responsibility.'},
+  {icon:'💛',title:'Support Fellow Students',col:'rgba(239,68,68,.06)',dot:'var(--danger)',
+    desc:'Peer tutoring, emotional support, and inclusion of marginalised classmates reflect constitutional values of dignity and equality. A school is a community — look after each other.'}
+];
+const COMM_RESP = [
+  {icon:'🧹',title:'Keep Eastview Clean',col:'rgba(6,182,212,.08)',dot:'var(--secondary)',desc:'Littering and dumping harm your community and violate Section 73 (environmental rights). Participate in clean-up drives and dispose of waste properly to protect Eastview\'s environment.'},
+  {icon:'🤜',title:'Help Your Neighbours',col:'rgba(6,182,212,.06)',dot:'var(--secondary)',desc:'Ubuntu — "I am because we are" — is at the heart of Zimbabwean community life. Help elderly neighbours, alert authorities during emergencies, and participate in community activities.'},
+  {icon:'🗳️',title:'Participate in Community Meetings',col:'rgba(6,182,212,.06)',dot:'var(--secondary)',desc:'Section 67 guarantees political participation. Exercising this starts at community meetings and neighbourhood forums long before you turn 18 and vote in national elections.'},
+  {icon:'🚫',title:'Say No to Crime & Substance Abuse',col:'rgba(6,182,212,.06)',dot:'var(--secondary)',desc:'Drug abuse, gang involvement, and crime destroy communities and violate others\' rights. Resisting peer pressure to engage in harmful activities is a duty to yourself and Eastview.'},
+  {icon:'🌳',title:'Protect the Environment',col:'rgba(6,182,212,.06)',dot:'var(--secondary)',desc:'Plant trees, conserve water, and report pollution. Future generations of Eastview teenagers deserve to inherit a clean, liveable environment — your actions today determine that.'}
+];
+const HOME_RESP = [
+  {icon:'💝',title:'Respect & Obey Parents/Guardians',col:'rgba(245,158,11,.08)',dot:'var(--accent)',desc:'Your parents and guardians are legally and morally responsible for your welfare. Respecting their guidance builds trust. You can disagree respectfully — communication is key.'},
+  {icon:'🧽',title:'Perform Household Chores',col:'rgba(245,158,11,.06)',dot:'var(--accent)',desc:'Cooking, cleaning, fetching water, and gardening build life skills and reduce family burden. Both boys and girls share these duties equally — Section 56 gender equality starts at home.'},
+  {icon:'👶',title:'Care for Younger Siblings',col:'rgba(245,158,11,.06)',dot:'var(--accent)',desc:'Guiding, protecting, and helping younger siblings with homework shapes who they become. Your influence on younger siblings is powerful — be a positive role model.'},
+  {icon:'💬',title:'Communicate Openly & Honestly',col:'rgba(245,158,11,.06)',dot:'var(--accent)',desc:'Hiding serious problems — health issues, bullying, unsafe relationships — makes them worse. Your family is your first support system. Open communication builds trust and solves problems.'},
+  {icon:'☮️',title:'Contribute to a Peaceful Home',col:'rgba(245,158,11,.06)',dot:'var(--accent)',desc:'Manage emotions constructively, use respectful language, and avoid unnecessary conflict. A peaceful home supports everyone\'s mental health. Conflict resolution skills developed at home serve you for life.'}
+];
+
+const TUTORIALS_VIDEOS = [
+  {emoji:'🏫',bg:'#1a2a1a',topic:'Education',tCls:'tag-green',title:'Your Right to Education in Zimbabwe',desc:'How Section 75 applies in daily school life — from enrolment to classroom treatment. What to do when your education right is denied.',yt:'https://www.youtube.com/results?search_query=Zimbabwe+children+right+to+education'},
+  {emoji:'👧🏿',bg:'#1a0a2e',topic:"Children's Rights",tCls:'tag-purple',title:"Section 81: Children's Rights Explained",desc:'A complete guide to child rights in Zimbabwe — protection from exploitation, abuse, child labour, and forced marriage.',yt:'https://www.youtube.com/results?search_query=Zimbabwe+children+rights+Section+81'},
+  {emoji:'📞',bg:'#2e1a0a',topic:'Action Guide',tCls:'tag-amber',title:'How to Report Rights Violations',desc:'Step-by-step guide on contacting ZHRC, Childline 116, ZRP, and Social Welfare. Know what evidence to gather.',yt:'https://www.youtube.com/results?search_query=Zimbabwe+human+rights+report+violation'},
+  {emoji:'💛',bg:'#2a1a0a',topic:'Dignity',tCls:'tag-amber',title:'Right to Dignity at School & Home',desc:'Real scenarios showing how Section 51 applies — handling degrading punishment, peer humiliation, and respectful authority interactions.',yt:'https://www.youtube.com/results?search_query=Zimbabwe+school+children+dignity+rights'},
+  {emoji:'🏘️',bg:'#0a1a2a',topic:'Community',tCls:'tag-cyan',title:'Community Responsibilities in Eastview',desc:'How teens participate in clean-ups, neighbourhood watch, community meetings, and environmental protection in Zimbabwe.',yt:'https://www.youtube.com/results?search_query=Zimbabwe+community+responsibilities+youth'},
+  {emoji:'⚖️',bg:'#1a1a2e',topic:'Justice',tCls:'tag-primary',title:'Understanding Zimbabwe\'s Constitution',desc:'A teen-friendly overview of Chapter 4 — Declaration of Rights — and why it matters for young Zimbabweans today.',yt:'https://www.youtube.com/results?search_query=Zimbabwe+constitution+chapter+4+rights+youth'}
+];
+const IMG_GUIDES = [
+  {emoji:'📜',bg:'rgba(79,70,229,.08)',title:'The Constitution Is Your Shield',desc:'Chapter 4 of Zimbabwe\'s Constitution 2013 contains 46 sections protecting your rights. It is the supreme law of the land.'},
+  {emoji:'🎒',bg:'rgba(16,185,129,.08)',title:'School Rights in Action',desc:'Safe learning, dignity, free enrollment, equal treatment — your constitutional rights in every classroom in Eastview.'},
+  {emoji:'💊',bg:'rgba(239,68,68,.08)',title:'Health Care is Your Right',desc:'Section 76 guarantees emergency care cannot be refused. Every clinic in Zimbabwe must treat you urgently.'},
+  {emoji:'♀♂',bg:'rgba(245,158,11,.08)',title:'Gender Equality in Zimbabwe',desc:'Sections 56 and 80 guarantee equal rights for girls and boys — at school, home, and in the community.'},
+  {emoji:'🚫',bg:'rgba(139,92,246,.08)',title:'No to Child Labour',desc:'Section 81 prohibits child labour, child marriage, and exploitation. You deserve to be in school, not working.'},
+  {emoji:'🌿',bg:'rgba(6,182,212,.08)',title:'Clean Eastview is Your Right',desc:'Section 73 gives you the right to a healthy environment. Your responsibility is to keep Eastview clean.'},
+  {emoji:'🤝',bg:'rgba(79,70,229,.08)',title:'No to Bullying — S.51 & S.52',desc:'Bullying violates the constitutional rights to dignity and personal security. Speak up. Report it.'},
+  {emoji:'🗳️',bg:'rgba(245,158,11,.08)',title:'Democracy Starts With You',desc:'Join your SRC now. Vote at 18. Section 67 guarantees your right to political participation.'}
+];
+const REAL_STORIES = [
+  {icon:'📖',name:'Chido\'s Story',location:'Harare South',story:'At 15, Chido was told she could not return to school after becoming pregnant. She contacted the ZHRC who reminded the school that Section 75 guarantees education regardless of pregnancy status. Chido returned to school and completed her O-Levels.',lesson:'Section 75: You cannot be expelled for pregnancy — your right to education is protected.'},
+  {icon:'📖',name:'Taurai\'s Story',location:'Bulawayo',story:'Taurai, 14, was being forced by a relative to work in their shop during school hours. After learning about child labour laws from a teacher, he called Childline 116. Social welfare intervened and Taurai returned to school.',lesson:'Section 81: Child labour is illegal. Childline 116 is free and confidential.'},
+  {icon:'📖',name:'Rudo\'s Story',location:'Eastview',story:'A school in Eastview was using degrading corporal punishment — students made to kneel in gravel. Students presented a petition to the headmaster citing Section 51 (dignity) and Section 53 (no degrading treatment). The practice was stopped.',lesson:'Sections 51 & 53: Degrading punishment is unconstitutional. Peaceful petitioning works.'},
+  {icon:'📖',name:'Farai\'s Story',location:'Masvingo',story:'Farai, 16, was arrested but not told why, and denied contact with his parents for over 48 hours. A legal aid organisation secured his release citing Section 50 — rights of arrested persons. The officers involved were disciplined.',lesson:'Section 50: Know your rights if arrested. Demand to contact your parents and a lawyer.'}
+];
+
+const ALL_QS = [
+  {q:"Which section of Zimbabwe's Constitution guarantees the Right to Education?",opts:["S.61","S.75","S.48","S.53"],ans:1},
+  {q:"What does Section 51 protect?",opts:["Right to vote","Right to education","Right to human dignity","Freedom of movement"],ans:2},
+  {q:"Which section protects children's rights (persons under 18)?",opts:["S.48","S.72","S.81","S.75"],ans:2},
+  {q:"Section 53 — freedom from torture — is described as:",opts:["Flexible","Relative","Absolute","Optional"],ans:2},
+  {q:"Freedom of expression is found in which section?",opts:["S.58","S.60","S.61","S.63"],ans:2},
+  {q:"Section 77 guarantees the right to:",opts:["Vote","Food and water","A fair trial","Political participation"],ans:1},
+  {q:"Which section protects the right to personal liberty?",opts:["S.48","S.49","S.50","S.51"],ans:1},
+  {q:"Section 56 protects which right?",opts:["Right to property","Equality and non-discrimination","Right to privacy","Freedom of assembly"],ans:1},
+  {q:"Section 50 deals with:",opts:["Environmental rights","Rights of arrested persons","Right to education","Freedom of the media"],ans:1},
+  {q:"Freedom of assembly and association is found in:",opts:["S.56","S.57","S.58","S.59"],ans:2},
+  {q:"The right to life is protected under:",opts:["S.55","S.48","S.52","S.67"],ans:1},
+  {q:"Which chapter of Zimbabwe's Constitution contains the Declaration of Rights?",opts:["Chapter 2","Chapter 4","Chapter 6","Chapter 8"],ans:1},
+  {q:"Section 73 protects:",opts:["Freedom of religion","Environmental rights","Right to a fair trial","Citizenship"],ans:1},
+  {q:"Freedom of conscience is found in which section?",opts:["S.58","S.63","S.60","S.66"],ans:2},
+  {q:"Freedom of movement is protected under:",opts:["S.62","S.66","S.71","S.68"],ans:1},
+  {q:"Which section protects the right to privacy?",opts:["S.57","S.55","S.52","S.60"],ans:0},
+  {q:"Section 54 protects freedom from:",opts:["Education denial","Slavery and forced labour","Eviction","Political participation"],ans:1},
+  {q:"'Presumption of innocence' means:",opts:["You are guilty until proven innocent","You are innocent until proven guilty","You cannot appeal","You do not need a lawyer"],ans:1},
+  {q:"Freedom of the media is found in:",opts:["S.59","S.61","S.62","S.63"],ans:2},
+  {q:"Section 67 protects which right?",opts:["Right to property","Political rights","Right to education","Freedom of religion"],ans:1},
+  {q:"Section 64 protects freedom of:",opts:["Religion","Expression","Profession, trade or occupation","Assembly"],ans:2},
+  {q:"Which section protects the right to demonstrate and petition?",opts:["S.57","S.58","S.59","S.60"],ans:2},
+  {q:"Section 65 protects:",opts:["Right to food","Labour rights","Right to housing","Freedom of movement"],ans:1},
+  {q:"Section 76 guarantees the right to:",opts:["Vote","Education","Health care","Property"],ans:2},
+  {q:"Section 78 protects which right?",opts:["Labour rights","Marriage rights","Political rights","Environmental rights"],ans:1},
+  {q:"Access to information is found in which section?",opts:["S.61","S.62","S.63","S.64"],ans:2},
+  {q:"The right to agricultural land is found in:",opts:["S.70","S.71","S.72","S.73"],ans:2},
+  {q:"Which section protects personal security?",opts:["S.48","S.51","S.52","S.55"],ans:2},
+  {q:"Section 84 protects:",opts:["Child rights","Veterans' rights","Media freedom","Cultural rights"],ans:1},
+  {q:"Which is an absolute right that cannot be limited under any circumstance?",opts:["Freedom of expression","Freedom of movement","Freedom from torture (S.53)","Right to vote"],ans:2},
+  {q:"Freedom of conscience covers:",opts:["Freedom of movement","Freedom of thought, religion and belief","Right to property","Freedom of assembly"],ans:1},
+  {q:"Section 75 states education must be:",opts:["Paid and selective","Free and state-funded for all citizens","Only for boys","Only for those over 10"],ans:1},
+  {q:"Before someone can be evicted from their home a _____ is needed:",opts:["Police decision","Cabinet approval","Court order","Landlord notice"],ans:2},
+  {q:"Which responsibility promotes a safe school for all?",opts:["Bullying classmates","Avoiding school assemblies","Not bullying and supporting students","Skipping school"],ans:2},
+  {q:"Section 44 obliges all persons to:",opts:["Pay taxes","Vote","Respect and uphold rights of others","Join political parties"],ans:2},
+  {q:"The right to food is found alongside the right to:",opts:["Movement","Water","Education","Vote"],ans:1},
+  {q:"How many official languages does Zimbabwe's Constitution recognise?",opts:["5","10","16","3"],ans:2},
+  {q:"Which section protects freedom to demonstrate peacefully?",opts:["S.57","S.58","S.59","S.60"],ans:2},
+  {q:"Child marriages (under 18) are prohibited by:",opts:["S.76","S.78","S.81","S.56"],ans:1},
+  {q:"Childline Zimbabwe's emergency number is:",opts:["999","112","116","0800"],ans:2}
+];
+
+const GLOSSARY = [
+  {term:'Constitution',def:'The supreme law of a country. In Zimbabwe, the Constitution of 2013 is the highest law — all other laws must be consistent with it.'},
+  {term:'Declaration of Rights',def:'Chapter 4 of Zimbabwe\'s Constitution. It lists all the rights every person in Zimbabwe is entitled to.'},
+  {term:'Habeas Corpus',def:'A legal principle meaning "you must have the body." It requires authorities to bring a detained person before a court to determine if their detention is lawful.'},
+  {term:'Jurisdiction',def:'The official power to make legal decisions and judgements. A court\'s jurisdiction defines what cases it can hear and where.'},
+  {term:'Presumption of Innocence',def:'The legal principle that every person accused of a crime is considered innocent until the prosecution proves their guilt in court.'},
+  {term:'Derogation',def:'A temporary suspension of rights permitted only during a state of emergency. Zimbabwe\'s Constitution (Section 88) limits when derogation is allowed.'},
+  {term:'Promulgate',def:'To formally announce or put a law into effect. Laws in Zimbabwe are promulgated when the President signs them into law.'},
+  {term:'ZHRC',def:'Zimbabwe Human Rights Commission — the body established to promote and protect human rights. You can report rights violations to them.'},
+  {term:'Plaintiff',def:'The person who brings a legal case to court (the one making the complaint). Also called the applicant in some cases.'},
+  {term:'Respondent',def:'The person or body being taken to court or against whom a legal application is made.'},
+  {term:'Affidavit',def:'A written sworn statement of facts that a person makes before a commissioner of oaths. Used as evidence in court.'},
+  {term:'Indictment',def:'A formal charge or accusation of a serious crime. In Zimbabwe, serious criminal charges are presented by the National Prosecuting Authority.'},
+  {term:'Bail',def:'Temporary release of an accused person from custody while they await trial, often requiring payment of money as security.'},
+  {term:'Subpoena',def:'A legal document ordering a person to appear in court or produce documents as a witness.'},
+  {term:'Ratio Decidendi',def:'Latin for "the reason for the decision." It\'s the legal principle upon which a court\'s decision is based and which becomes precedent.'}
+];
+
+const FAQS = [
+  {q:'What do I do if my rights are violated?',a:'1. Stay calm and document what happened (date, time, who was involved). 2. Report to your school principal or nearest police station. 3. Contact the Zimbabwe Human Rights Commission (ZHRC). 4. Call Childline 116 if you are under 18. 5. Seek legal aid if needed.'},
+  {q:'Can my school expel me for being pregnant?',a:'No! Section 75 guarantees your right to education. Schools cannot expel pregnant students. If this happens, report it to the Ministry of Primary and Secondary Education and the ZHRC.'},
+  {q:'What are my rights if police arrest me?',a:'Under Section 50: you must be told why you are arrested, you can contact your parents and a lawyer, you must be charged or released within 48 hours, and you cannot be mistreated.'},
+  {q:'Is corporal punishment (beating) at school legal?',a:'Degrading or humiliating corporal punishment violates Section 51 (dignity) and Section 53 (no cruel treatment). Report severe cases to the Ministry of Education and ZHRC.'},
+  {q:'What if I am being forced into marriage?',a:'Child marriage before age 18 is prohibited under Section 78 and the Marriage Act. Call Childline 116 immediately. You can also contact Girl Child Network Zimbabwe or UNICEF Zimbabwe.'},
+  {q:'Can I join a student union or protest peacefully?',a:'Yes! Section 58 protects freedom of assembly and association. Section 59 protects your right to peaceful demonstration. Violence is not protected — peaceful protest is.'}
+];
+
+const CONTACTS = [
+  {icon:'📞',name:'Childline Zimbabwe',num:'116',color:'rgba(239,68,68,.1)',ic:'var(--danger)',note:'Free, 24/7, confidential — for any child emergency',tel:'116'},
+  {icon:'⚖️',name:'Zimbabwe Human Rights Commission',num:'(04) 700-891',color:'rgba(79,70,229,.1)',ic:'var(--primary)',note:'Report rights violations',tel:'04700891'},
+  {icon:'🔵',name:'Zimbabwe Republic Police (ZRP)',num:'995',color:'rgba(6,182,212,.1)',ic:'var(--secondary)',note:'Emergency police line',tel:'995'},
+  {icon:'🏥',name:'Ministry of Health Hotline',num:'(04) 729-614',color:'rgba(16,185,129,.1)',ic:'var(--success)',note:'Health emergencies and inquiries',tel:'04729614'},
+  {icon:'📚',name:'Legal Aid Directorate',num:'(04) 753-756',color:'rgba(245,158,11,.1)',ic:'var(--accent)',note:'Free legal advice for those who cannot afford lawyers',tel:'04753756'},
+  {icon:'👧',name:'Girl Child Network Zimbabwe',num:'(04) 335-568',color:'rgba(139,92,246,.1)',ic:'#8B5CF6',note:'Protection of girls\' rights — education, safety, health',tel:'04335568'},
+  {icon:'🌍',name:'UNICEF Zimbabwe',num:'(04) 338-145',color:'rgba(6,182,212,.1)',ic:'var(--secondary)',note:'Child rights and welfare',tel:'04338145'},
+  {icon:'🆘',name:'Musasa Project',num:'(04) 333-145',color:'rgba(239,68,68,.1)',ic:'var(--danger)',note:'Support for women and girls facing violence',tel:'04333145'}
+];
+
+// ═══════════════════════════════════════════════
+// STATE
+// ═══════════════════════════════════════════════
+let userData = {};
+let quizSize = 10;
+let quizQs = [];
+let qIdx = 0;
+let qScore = 0;
+let qAnswered = false;
+let stars = 0;
+let toastTimer;
+
+function loadData(){
+  try{ userData = JSON.parse(localStorage.getItem('ev_user')||'{}'); }catch(e){ userData = {}; }
+  if(!userData.xp) userData.xp = 10;
+  if(!userData.streak) userData.streak = 1;
+  if(!userData.level) userData.level = 1;
+  if(!userData.name) userData.name = 'Eastview Teen';
+  if(!userData.history) userData.history = [];
+}
+function saveData(){ try{ localStorage.setItem('ev_user', JSON.stringify(userData)); }catch(e){} }
+
+// ═══════════════════════════════════════════════
+// AUTH
+// ═══════════════════════════════════════════════
+function doLogin(){
+  const u = document.getElementById('l-user').value.trim();
+  const p = document.getElementById('l-pass').value;
+  const err = document.getElementById('login-err');
+  if(u==='teen' && p==='rights123'){
+    if(u) userData.name = 'Teen — ' + u;
+    saveData(); launchApp();
+  } else {
+    err.style.display='flex';
+    document.getElementById('login-err-msg').textContent='Invalid credentials. Use: teen / rights123';
+  }
+}
+function doGuest(){userData.name='Guest';saveData();launchApp();}
+function doLogout(){
+  if(confirm('Sign out of Eastview Rights Hub?')){
+    document.getElementById('app').classList.remove('show');
+    document.getElementById('login-screen').style.display='flex';
+    document.getElementById('l-user').value='';
+    document.getElementById('l-pass').value='';
+  }
+}
+function toggleLoginPwd(){
+  const i=document.getElementById('l-pass');
+  const e=document.getElementById('l-eye');
+  if(i.type==='password'){i.type='text';e.className='fa fa-eye-slash';}
+  else{i.type='password';e.className='fa fa-eye';}
+}
+
+function launchApp(){
+  document.getElementById('login-screen').style.display='none';
+  document.getElementById('app').classList.add('show');
+  buildAll(); updateProfile();
+}
+
+// ═══════════════════════════════════════════════
+// NAVIGATION
+// ═══════════════════════════════════════════════
+const BN_MAP = {home:'bn-home',rights:'bn-rights',quiz:'bn-quiz',tutorials:'bn-tutorials',register:'bn-register'};
+function goScreen(name){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  const el = document.getElementById('s-'+name);
+  if(el) el.classList.add('active');
+  document.querySelectorAll('.bn').forEach(b=>b.classList.remove('active'));
+  if(BN_MAP[name]) document.getElementById(BN_MAP[name]).classList.add('active');
+  document.getElementById('main-scroll').scrollTo({top:0,behavior:'smooth'});
+  const titles={home:'Eastview Rights Hub',rights:'Constitutional Rights',responsibilities:'Your Responsibilities',tutorials:'Tutorials',quiz:'Quiz',notes:'Study Notes',definitions:'Definitions',register:'Register',profile:'My Profile',emergency:'Emergency Contacts',glossary:'Glossary',settings:'Settings'};
+  document.getElementById('nav-title-txt').textContent = titles[name]||'Eastview Rights Hub';
+  addXP(5);
+}
+
+// ═══════════════════════════════════════════════
+// BUILD
+// ═══════════════════════════════════════════════
+function buildAll(){
+  buildRights();
+  buildResp('school',SCHOOL_RESP);
+  buildResp('community',COMM_RESP);
+  buildResp('home',HOME_RESP);
+  buildTutorials();
+  buildEmergency();
+  buildGlossary();
+  buildFAQ();
+  loadNotes();
+  updateQuizChart();
+}
+
+function buildRights(){
+  const c=document.getElementById('rights-container');
+  c.innerHTML=RIGHTS.map((r,i)=>`
+  <div class="acc-item" id="rc${i}" data-cat="${r.cat}">
+    <div class="acc-hdr" onclick="toggleAcc('rc${i}')">
+      <div class="acc-icon" style="background:${r.bg};font-size:1.1rem;">${r.icon}</div>
+      <div class="acc-info">
+        <div class="acc-title">${r.title}</div>
+        <div class="acc-sect">${r.sect}</div>
+      </div>
+      <span class="tag ${r.badgeCls}" style="margin-right:8px;flex-shrink:0;">${r.badge}</span>
+      <i class="fa fa-chevron-down acc-chevron"></i>
+    </div>
+    <div class="acc-body" id="rb${i}">
+      <div class="info-lbl info-lbl-primary">📖 Definition</div>
+      <div class="info-txt">${r.def}</div>
+      <div class="info-lbl info-lbl-green">📝 Description</div>
+      <div class="info-txt">${r.desc}</div>
+      <div class="info-lbl info-lbl-amber">💡 What It Means for Eastview Teens</div>
+      <div class="info-txt">${r.expl}</div>
+    </div>
+  </div>`).join('');
+}
+
+function toggleAcc(id){
+  const c=document.getElementById(id);
+  const was=c.classList.contains('open');
+  document.querySelectorAll('.acc-item.open').forEach(x=>x.classList.remove('open'));
+  if(!was){c.classList.add('open');addXP(10);}
+}
+
+function filterR(cat,btn){
+  document.querySelectorAll('#rights-chips .chip').forEach(c=>c.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.acc-item').forEach(c=>{
+    c.style.display=(cat==='ALL'||c.dataset.cat===cat)?'':'none';
+  });
+}
+
+function searchRights(q){
+  const lq=q.toLowerCase();
+  document.querySelectorAll('.acc-item').forEach(c=>{
+    const t=c.querySelector('.acc-title').textContent.toLowerCase();
+    const s=c.querySelector('.acc-sect').textContent.toLowerCase();
+    c.style.display=(!q||t.includes(lq)||s.includes(lq))?'':'none';
+  });
+}
+
+function buildResp(type,list){
+  const p=document.getElementById('resp-panel-'+type);
+  if(!p)return;
+  p.innerHTML=list.map((r,i)=>`
+  <div class="acc-item" id="rp${type}${i}">
+    <div class="acc-hdr" onclick="toggleAcc('rp${type}${i}')">
+      <div class="acc-icon" style="background:${r.col};font-size:1.1rem;">${r.icon}</div>
+      <div class="acc-info">
+        <div class="acc-title">${r.title}</div>
+        <div class="acc-sect">Responsibility ${i+1}</div>
+      </div>
+      <i class="fa fa-chevron-down acc-chevron"></i>
+    </div>
+    <div class="acc-body" id="rpb${type}${i}">
+      <div class="info-lbl" style="color:${r.dot};">💡 WHY IT MATTERS</div>
+      <div class="info-txt">${r.desc}</div>
+    </div>
+  </div>`).join('');
+}
+
+function switchRTab(tab,btn){
+  document.querySelectorAll('.tab-bar .tab-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  ['school','community','home'].forEach(t=>{
+    document.getElementById('resp-panel-'+t).classList.toggle('active',t===tab);
+  });
+}
+
+function switchTTab(tab,btn){
+  btn.closest('.tab-bar').querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  ['videos','images','stories'].forEach(t=>{
+    document.getElementById('tut-panel-'+t).classList.toggle('active',t===tab);
+  });
+}
+
+function switchNTab(tab,btn){
+  btn.closest('.tab-bar').querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  ['rights-notes','resp-notes','my-notes','faq'].forEach(t=>{
+    document.getElementById('notes-panel-'+t).classList.toggle('active',t===tab);
+  });
+}
+
+function buildTutorials(){
+  // Videos
+  const vp=document.getElementById('tut-panel-videos');
+  vp.innerHTML=TUTORIALS_VIDEOS.map((v,i)=>`
+  <div class="vid-card" onclick="openVid(${i})">
+    <div class="vid-thumb" style="background:${v.bg};">
+      <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:5rem;">${v.emoji}</div>
+      <div class="vid-overlay"></div>
+      <div class="vid-play"><i class="fa fa-play"></i></div>
+    </div>
+    <div class="vid-info">
+      <div style="margin-bottom:6px;"><span class="tag ${v.tCls}">${v.topic}</span></div>
+      <div class="vid-title">${v.title}</div>
+      <div class="vid-desc">${v.desc}</div>
+    </div>
+  </div>`).join('');
+
+  // Images
+  const ip=document.getElementById('tut-panel-images');
+  ip.innerHTML='<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">'+
+    IMG_GUIDES.map((g,i)=>`
+    <div class="card card-hover" onclick="openImg(${i})" style="cursor:pointer;overflow:hidden;">
+      <div style="height:100px;background:${g.bg};display:flex;align-items:center;justify-content:center;font-size:3rem;">${g.emoji}</div>
+      <div style="padding:12px;">
+        <div style="font-weight:700;font-size:.82rem;margin-bottom:4px;">${g.title}</div>
+        <div style="font-size:.72rem;color:var(--text3);line-height:1.4;">${g.desc}</div>
+      </div>
+    </div>`).join('')+'</div>';
+
+  // Stories
+  const sp=document.getElementById('tut-panel-stories');
+  sp.innerHTML=REAL_STORIES.map((s,i)=>`
+  <div class="acc-item" id="st${i}">
+    <div class="acc-hdr" onclick="toggleAcc('st${i}')">
+      <div class="acc-icon" style="background:rgba(79,70,229,.1);font-size:1.2rem;">${s.icon}</div>
+      <div class="acc-info">
+        <div class="acc-title">${s.name}</div>
+        <div class="acc-sect">${s.location}</div>
+      </div>
+      <i class="fa fa-chevron-down acc-chevron"></i>
+    </div>
+    <div class="acc-body" id="stb${i}">
+      <div class="info-lbl info-lbl-primary">📖 What Happened</div>
+      <div class="info-txt">${s.story}</div>
+      <div class="info-lbl info-lbl-green" style="margin-top:12px;">⚖️ Legal Lesson</div>
+      <div class="info-txt">${s.lesson}</div>
+    </div>
+  </div>`).join('');
+}
+
+function openVid(i){
+  const v=TUTORIALS_VIDEOS[i];
+  document.getElementById('modal-t').textContent=v.title;
+  document.getElementById('modal-b').innerHTML=`
+    <div style="background:${v.bg};border-radius:var(--radius-sm);padding:32px 20px;text-align:center;margin-bottom:16px;">
+      <div style="font-size:5rem;">${v.emoji}</div>
+      <span class="tag ${v.tCls}" style="margin-top:12px;display:inline-block;">${v.topic}</span>
+    </div>
+    <p style="font-size:.86rem;color:var(--text2);line-height:1.7;margin-bottom:16px;">${v.desc}</p>
+    <div style="background:rgba(79,70,229,.06);border:1px solid rgba(79,70,229,.15);border-radius:var(--radius-sm);padding:14px;margin-bottom:12px;">
+      <div style="font-weight:800;font-size:.8rem;color:var(--primary);margin-bottom:8px;">📺 WHERE TO WATCH</div>
+      <p style="font-size:.82rem;color:var(--text2);line-height:1.6;">Search <strong>"${v.title}"</strong> on YouTube.<br>Or visit: <strong>ZHRC.org.zw</strong> · <strong>unicef.org/zimbabwe</strong> · <strong>savethechildren.org.zw</strong></p>
+      <a href="${v.yt}" target="_blank" style="display:inline-flex;align-items:center;gap:7px;margin-top:10px;background:var(--danger);color:white;border-radius:var(--radius-xs);padding:9px 16px;font-size:.82rem;font-weight:700;text-decoration:none;"><i class="fa fa-external-link"></i> Search on YouTube →</a>
+    </div>`;
+  document.getElementById('modal-bg').classList.add('open');
+}
+
+function openImg(i){
+  const g=IMG_GUIDES[i];
+  document.getElementById('modal-t').textContent=g.title;
+  document.getElementById('modal-b').innerHTML=`
+    <div style="height:140px;background:${g.bg};border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;font-size:5rem;margin-bottom:16px;">${g.emoji}</div>
+    <p style="font-size:.88rem;color:var(--text2);line-height:1.7;">${g.desc}</p>
+    <div class="tip-box" style="margin:14px 0 0;"><div class="tip-icon">💡</div><div class="tip-txt">Knowing your rights is the first step to protecting them. Share this with a friend!</div></div>`;
+  document.getElementById('modal-bg').classList.add('open');
+}
+
+function buildEmergency(){
+  const c=document.getElementById('contact-list');
+  c.innerHTML=CONTACTS.map(ct=>`
+  <div class="contact-card" onclick="window.location.href='tel:${ct.tel}'">
+    <div class="contact-icon" style="background:${ct.color};color:${ct.ic};">${ct.icon}</div>
+    <div style="flex:1;">
+      <div class="contact-name">${ct.name}</div>
+      <div class="contact-num">${ct.num}</div>
+      <div style="font-size:.7rem;color:var(--text3);margin-top:2px;">${ct.note}</div>
+    </div>
+    <i class="fa fa-phone" style="color:${ct.ic};font-size:.9rem;flex-shrink:0;"></i>
+  </div>`).join('');
+}
+
+function buildGlossary(){
+  const c=document.getElementById('gloss-list');
+  c.innerHTML=GLOSSARY.map((g,i)=>`
+  <div class="gloss-item" id="gi${i}">
+    <div class="gloss-term">${g.term}</div>
+    <div class="gloss-def">${g.def}</div>
+  </div>`).join('');
+}
+
+function searchGloss(q){
+  const lq=q.toLowerCase();
+  GLOSSARY.forEach((g,i)=>{
+    const el=document.getElementById('gi'+i);
+    if(el) el.style.display=(!q||g.term.toLowerCase().includes(lq)||g.def.toLowerCase().includes(lq))?'':'none';
+  });
+}
+
+function buildFAQ(){
+  const c=document.getElementById('faq-list');
+  c.innerHTML=FAQS.map((f,i)=>`
+  <div class="acc-item" id="faq${i}">
+    <div class="acc-hdr" onclick="toggleAcc('faq${i}')">
+      <div class="acc-icon" style="background:rgba(79,70,229,.1);font-size:1rem;"><i class="fa fa-circle-question" style="color:var(--primary);"></i></div>
+      <div class="acc-info"><div class="acc-title">${f.q}</div></div>
+      <i class="fa fa-chevron-down acc-chevron"></i>
+    </div>
+    <div class="acc-body" id="faqb${i}"><div class="info-txt">${f.a}</div></div>
+  </div>`).join('');
+}
+
+// ═══════════════════════════════════════════════
+// QUIZ
+// ═══════════════════════════════════════════════
+const QSZ_INFO = {10:{label:'Quick Quiz',desc:'Test basic knowledge. Great for first-timers!',xp:50},20:{label:'Standard Quiz',desc:'Comprehensive coverage of rights and responsibilities.',xp:100},30:{label:'Advanced Quiz',desc:'Deep knowledge of Chapter 4 and all duties.',xp:150},40:{label:'Expert Quiz',desc:'The ultimate challenge — all 40 questions!',xp:200}};
+
+function setQSize(n,btn){
+  quizSize=n;
+  document.querySelectorAll('.qsz').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('quiz-preview-title').textContent=QSZ_INFO[n].label+' — '+n+' Questions';
+  document.getElementById('quiz-preview-desc').textContent=QSZ_INFO[n].desc;
+  document.getElementById('quiz-xp-preview').textContent=QSZ_INFO[n].xp;
+}
+
+function startQuiz(){
+  quizQs=[...ALL_QS].sort(()=>Math.random()-.5).slice(0,quizSize);
+  qIdx=0;qScore=0;qAnswered=false;
+  document.getElementById('quiz-setup').style.display='none';
+  document.getElementById('quiz-active').style.display='block';
+  document.getElementById('quiz-result').style.display='none';
+  renderQ();
+}
+
+function renderQ(){
+  if(qIdx>=quizQs.length){showResult();return;}
+  qAnswered=false;
+  const q=quizQs[qIdx];
+  document.getElementById('q-prog-fill').style.width=((qIdx/quizSize)*100)+'%';
+  document.getElementById('q-lbl').textContent=(qIdx+1)+'/'+quizSize;
+  document.getElementById('q-live-score').textContent=qScore+' ✓';
+  document.getElementById('q-render').innerHTML=`
+  <div class="q-card">
+    <div class="q-hdr"><span class="q-num">Q${qIdx+1} of ${quizSize}</span><span style="font-size:.7rem;color:var(--text3);margin-left:auto;">Select correct answer</span></div>
+    <div class="q-text">${q.q}</div>
+    <div class="opts">
+      ${q.opts.map((o,oi)=>`<button class="opt" id="opt${oi}" onclick="selectOpt(${oi},${q.ans})">
+        <span class="opt-letter">${String.fromCharCode(65+oi)}</span>${o}
+      </button>`).join('')}
+    </div>
+    <div class="q-fb" id="q-fb"></div>
+    <button class="next-btn" id="next-btn" onclick="nextQ()">
+      ${qIdx+1<quizSize?'Next Question <i class="fa fa-arrow-right"></i>':'See Results <i class="fa fa-trophy"></i>'}
+    </button>
+  </div>`;
+}
+
+function selectOpt(chosen,correct){
+  if(qAnswered)return;
+  qAnswered=true;
+  const ok=chosen===correct;
+  if(ok)qScore++;
+  for(let i=0;i<4;i++){
+    const b=document.getElementById('opt'+i);
+    if(!b)continue;
+    b.disabled=true;
+    if(i===correct)b.classList.add('correct');
+    else if(i===chosen&&!ok)b.classList.add('wrong');
+  }
+  const fb=document.getElementById('q-fb');
+  if(fb){
+    fb.style.display='flex';
+    if(ok){fb.className='q-fb q-fb-ok';fb.innerHTML='<i class="fa fa-circle-check"></i> Correct! Well done.';}
+    else{fb.className='q-fb q-fb-no';fb.innerHTML=`<i class="fa fa-circle-xmark"></i> Incorrect. Answer: <strong style="margin-left:4px;">${String.fromCharCode(65+correct)}. ${quizQs[qIdx].opts[correct]}</strong>`;}
+  }
+  document.getElementById('next-btn').style.display='block';
+}
+
+function nextQ(){qIdx++;renderQ();}
+
+function showResult(){
+  document.getElementById('quiz-active').style.display='none';
+  document.getElementById('quiz-result').style.display='block';
+  const pct=Math.round((qScore/quizSize)*100);
+  const wrong=quizSize-qScore;
+  let trophy,msg,sub;
+  if(pct>=90){trophy='🏆';msg='Outstanding! You know your rights!';sub='Exceptional mastery of Zimbabwe\'s Constitution';}
+  else if(pct>=75){trophy='🥈';msg='Excellent! Very well done.';sub='Strong knowledge — keep it up';}
+  else if(pct>=60){trophy='👍';msg='Good effort! Keep learning.';sub='Review the Rights section to fill gaps';}
+  else if(pct>=40){trophy='📚';msg='Fair attempt. Study more!';sub='Focus on the Notes and Rights sections';}
+  else{trophy='💪';msg='Keep going — knowledge is power!';sub='Re-read the Definitions and Rights sections';}
+  document.getElementById('r-trophy').textContent=trophy;
+  document.getElementById('r-score').textContent=qScore+'/'+quizSize;
+  document.getElementById('r-msg').textContent=msg;
+  document.getElementById('r-sub').textContent=sub;
+  document.getElementById('r-correct').textContent=qScore;
+  document.getElementById('r-wrong').textContent=wrong;
+  document.getElementById('r-pct').textContent=pct+'%';
+  const xpEarned=Math.round((pct/100)*QSZ_INFO[quizSize].xp);
+  document.getElementById('r-xp-earned').innerHTML=`<span class="xp-chip">+${xpEarned} XP Earned!</span>`;
+  addXP(xpEarned);
+  userData.history=userData.history||[];
+  userData.history.push({score:qScore,total:quizSize,pct,date:new Date().toLocaleDateString()});
+  if(userData.history.length>6)userData.history.shift();
+  saveData();
+  if(pct>=80){setTimeout(confetti,300);}
+  updateQuizChart();
+  if(pct>=80){
+    userData.badge_quiz=true;saveData();
+    document.querySelectorAll('#badge-quiz,#pb-quiz').forEach(b=>b.classList.remove('locked'));
+  }
+}
+
+function retryQuiz(){
+  document.getElementById('quiz-result').style.display='none';
+  document.getElementById('quiz-setup').style.display='block';
+}
+
+function shareResult(){
+  const txt=`🇿🇼 I scored ${qScore}/${quizSize} (${Math.round(qScore/quizSize*100)}%) on the Eastview Rights Hub Quiz!\nKnowing my constitutional rights! #EastviewRightsHub #Zimbabwe`;
+  if(navigator.share){navigator.share({title:'My Quiz Result',text:txt}).catch(()=>{});}
+  else{showToast('📋 Share: '+qScore+'/'+quizSize+' — screenshot and share!');}
+}
+
+function updateQuizChart(){
+  const c=document.getElementById('quiz-history-chart');
+  if(!userData.history||!userData.history.length){
+    c.innerHTML='<div style="font-size:.8rem;color:var(--text3);text-align:center;padding:12px 0;">No quiz history yet. Start your first quiz!</div>';
+    return;
+  }
+  c.innerHTML=userData.history.map(h=>`
+  <div class="chart-row">
+    <div class="chart-label">${h.date||'—'}</div>
+    <div class="chart-bar-bg"><div class="chart-bar-val" style="width:${h.pct}%;"></div></div>
+    <div class="chart-pct">${h.pct}%</div>
+  </div>`).join('');
+}
+
+// ═══════════════════════════════════════════════
+// NOTES
+// ═══════════════════════════════════════════════
+function loadNotes(){try{document.getElementById('my-notes-txt').value=localStorage.getItem('ev_notes')||'';}catch(e){}}
+function saveNotes(){
+  try{localStorage.setItem('ev_notes',document.getElementById('my-notes-txt').value);}catch(e){}
+  const m=document.getElementById('notes-saved-msg');
+  m.style.display='block';setTimeout(()=>m.style.display='none',3000);
+  addXP(15);
+}
+function clearNotes(){if(confirm('Clear all personal notes?')){document.getElementById('my-notes-txt').value='';try{localStorage.removeItem('ev_notes');}catch(e){}}}
+function downloadNotes(){
+  const txt=document.getElementById('my-notes-txt').value;
+  const el=document.createElement('a');
+  el.href='data:text/plain;charset=utf-8,'+encodeURIComponent('EASTVIEW RIGHTS HUB — My Study Notes\n\n'+txt);
+  el.download='eastview-notes.txt';
+  el.click();
+}
+
+// ═══════════════════════════════════════════════
+// REGISTER
+// ═══════════════════════════════════════════════
+function setStar(n){
+  stars=n;
+  document.querySelectorAll('.star-b').forEach((s,i)=>{s.style.color=i<n?'#F59E0B':'#D1D5DB';});
+}
+
+function submitReg(){
+  let valid=true;
+  const checks=[
+    {id:'r-name',err:'err-r-name',fn:v=>v.trim().length>1},
+    {id:'r-age',err:'err-r-age',fn:v=>v>=13&&v<=19},
+    {id:'r-school',err:'err-r-school',fn:v=>v.trim().length>1},
+    {id:'r-grade',err:'err-r-grade',fn:v=>v!==''}
+  ];
+  checks.forEach(c=>{
+    const inp=document.getElementById(c.id);
+    const err=document.getElementById(c.err);
+    const ok=c.fn(inp.value);
+    inp.classList.toggle('err',!ok);
+    err.style.display=ok?'none':'block';
+    if(!ok)valid=false;
+  });
+  if(!valid){showToast('⚠️ Please fill all required fields');return;}
+  document.getElementById('reg-success').style.display='block';
+  document.getElementById('reg-success').scrollIntoView({behavior:'smooth'});
+  addXP(50);
+  showToast('🎉 Registration submitted! +50 XP');
+}
+
+// ═══════════════════════════════════════════════
+// XP / GAMIFICATION
+// ═══════════════════════════════════════════════
+function addXP(n){
+  userData.xp=(userData.xp||0)+n;
+  userData.level=Math.floor(userData.xp/200)+1;
+  saveData();
+  updateProfile();
+}
+
+function updateProfile(){
+  const xp=userData.xp||0;
+  const level=userData.level||1;
+  const xpInLevel=xp%200;
+  const pct=(xpInLevel/200)*100;
+  const roles=['Beginner','Learner','Thinker','Activist','Scholar','Champion','Rights Hero'];
+  const role=roles[Math.min(level-1,roles.length-1)];
+  const name=userData.name||'Eastview Teen';
+  ['home-user-name','profile-name'].forEach(id=>{const el=document.getElementById(id);if(el)el.textContent=name;});
+  ['home-user-level','profile-level'].forEach(id=>{const el=document.getElementById(id);if(el)el.textContent=level;});
+  ['home-user-xp','profile-xp'].forEach(id=>{const el=document.getElementById(id);if(el)el.textContent=xp;});
+  ['home-streak'].forEach(id=>{const el=document.getElementById(id);if(el)el.textContent=userData.streak||1;});
+  ['home-xp-bar','profile-xp-bar'].forEach(id=>{const el=document.getElementById(id);if(el)el.style.width=pct+'%';});
+  ['user-xp-hero'].forEach(id=>{const el=document.getElementById(id);if(el)el.textContent=xp;});
+  ['p-xp-chip'].forEach(id=>{const el=document.getElementById(id);if(el)el.textContent=xp;});
+  ['p-streak-chip'].forEach(id=>{const el=document.getElementById(id);if(el)el.textContent=userData.streak||1;});
+  const roleEl=document.getElementById('profile-role-txt');if(roleEl)roleEl.textContent=role;
+  // badges
+  userData.badge_learner=true;
+  if(xp>=200)userData.badge_scholar=true;
+  if(userData.streak>=7)userData.badge_streak=true;
+  if(level>=5)userData.badge_champ=true;
+  if(xp>=500)userData.badge_explorer=true;
+  ['learner','scholar','quiz','streak','champ','explorer'].forEach(b=>{
+    document.querySelectorAll(`#badge-${b},#pb-${b}`).forEach(el=>{
+      el.classList.toggle('locked',!userData['badge_'+b]);
+    });
+  });
+}
+
+// ═══════════════════════════════════════════════
+// SETTINGS
+// ═══════════════════════════════════════════════
+function toggleDark(){
+  const t=document.getElementById('dark-toggle');
+  const isDark=document.documentElement.getAttribute('data-theme')==='dark';
+  document.documentElement.setAttribute('data-theme',isDark?'light':'dark');
+  t.classList.toggle('on',!isDark);
+  try{localStorage.setItem('ev_dark',(!isDark)?'1':'');}catch(e){}
+}
+function toggleHC(){
+  const t=document.getElementById('hc-toggle');
+  const isHC=document.body.classList.contains('high-contrast');
+  document.body.classList.toggle('high-contrast',!isHC);
+  t.classList.toggle('on',!isHC);
+}
+function setFont(sz){
+  document.body.classList.remove('font-sm','font-lg');
+  if(sz==='sm')document.body.classList.add('font-sm');
+  if(sz==='lg')document.body.classList.add('font-lg');
+}
+function setLang(l){
+  const msgs={en:'Language set to English 🇿🇼',sn:'Mutauro: Shona 🇿🇼 (full translation coming soon)',nd:'Ulimi: Ndebele 🇿🇼 (full translation coming soon)'};
+  showToast(msgs[l]||'Language updated');
+}
+function clearAppData(){
+  if(confirm('This will reset all your XP, notes, and progress. Continue?')){
+    try{localStorage.clear();}catch(e){}
+    userData={xp:10,level:1,streak:1,name:'Eastview Teen',history:[]};
+    updateProfile();
+    showToast('✅ App data cleared');
+  }
+}
+
+// ═══════════════════════════════════════════════
+// MODAL / TOAST
+// ═══════════════════════════════════════════════
+function closeModal(){document.getElementById('modal-bg').classList.remove('open');}
+function showToast(msg){
+  const t=document.getElementById('toast');
+  t.textContent=msg;t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer=setTimeout(()=>{t.classList.remove('show');t.style.display='none';},2800);
+}
+
+// ═══════════════════════════════════════════════
+// CONFETTI
+// ═══════════════════════════════════════════════
+function confetti(){
+  const colors=['#4F46E5','#06B6D4','#F59E0B','#EF4444','#10B981','#8B5CF6','#F97316'];
+  for(let i=0;i<60;i++){
+    const el=document.createElement('div');
+    el.className='confetti-piece';
+    el.style.left=Math.random()*100+'vw';
+    el.style.background=colors[Math.floor(Math.random()*colors.length)];
+    el.style.animationDuration=(2+Math.random()*2)+'s';
+    el.style.animationDelay=Math.random()+'s';
+    el.style.width=(8+Math.random()*8)+'px';
+    el.style.height=(8+Math.random()*8)+'px';
+    document.body.appendChild(el);
+    setTimeout(()=>el.remove(),4500);
+  }
+}
+
+// ═══════════════════════════════════════════════
+// INIT — SPLASH & DARK MODE RESTORE
+// ═══════════════════════════════════════════════
+window.addEventListener('DOMContentLoaded',()=>{
+  // Restore dark mode
+  try{if(localStorage.getItem('ev_dark')==='1'){document.documentElement.setAttribute('data-theme','dark');document.getElementById('dark-toggle').classList.add('on');}}catch(e){}
+  // Load user data
+  loadData();
+  // Splash → Login after 2.5s
+  setTimeout(()=>{
+    document.getElementById('splash').style.animation='none';
+    document.getElementById('splash').style.opacity='0';
+    document.getElementById('splash').style.transition='opacity .5s';
+    setTimeout(()=>{
+      document.getElementById('splash').style.display='none';
+      document.getElementById('login-screen').style.display='flex';
+    },500);
+  },2500);
+  // Enter on login
+  document.getElementById('l-pass').addEventListener('keydown',e=>{if(e.key==='Enter')doLogin();});
+  document.getElementById('l-user').addEventListener('keydown',e=>{if(e.key==='Enter')doLogin();});
+  // Quiz size default label
+  setQSize(10,document.querySelector('.qsz.active'));
+});
+</script>
+</body>
+</html>
